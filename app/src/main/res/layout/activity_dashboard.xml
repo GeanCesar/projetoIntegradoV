@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:src="@drawable/fundo_tela_login" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/grandient_fundo_login"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="82dp"
+                android:layout_height="75dp"
+                android:padding="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:src="@drawable/ic_user" />
+
+            <LinearLayout
+                android:layout_width="201dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_usuario"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="USUÁRIO"
+                    android:textColor="@color/azul_projeto"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_cargo"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Professor"
+                    android:textColor="@color/branco" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_sair"
+                android:layout_width="76dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:paddingEnd="10dp"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ic_sair" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/bt_Reservar"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.65"
+                        android:background="@color/cor_botao_dash"
+                        android:clickable="true"
+                        android:elevation="@android:dimen/app_icon_size"
+                        android:paddingBottom="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="154dp"
+                                android:clickable="true"
+                                android:padding="35dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_calendar" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_alignParentBottom="true"
+                                android:text="Reservar"
+                                android:textAlignment="center"
+                                android:textColor="@color/branco"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/bt_Reservas"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.65"
+                        android:background="@color/cor_botao_dash"
+                        android:clickable="true"
+                        android:elevation="@android:dimen/app_icon_size"
+                        android:paddingBottom="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="false">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="154dp"
+                                android:clickable="false"
+                                android:padding="45dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_list" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_alignParentBottom="true"
+                                android:clickable="false"
+                                android:text="Reservas"
+                                android:textAlignment="center"
+                                android:textColor="@color/branco"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/bt_Historico"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.65"
+                        android:background="@color/cor_botao_dash"
+                        android:clickable="true"
+                        android:elevation="@android:dimen/app_icon_size"
+                        android:paddingBottom="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="154dp"
+                                android:clickable="true"
+                                android:padding="40dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_history" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_alignParentBottom="true"
+                                android:text="Histórico"
+                                android:textAlignment="center"
+                                android:textColor="@color/branco"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/bt_Sala"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.65"
+                        android:background="@color/cor_botao_dash"
+                        android:clickable="true"
+                        android:elevation="@android:dimen/app_icon_size"
+                        android:paddingBottom="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="false">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="154dp"
+                                android:clickable="false"
+                                android:padding="40dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_sala" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_alignParentBottom="true"
+                                android:clickable="false"
+                                android:text="Cadastrar salas"
+                                android:textAlignment="center"
+                                android:textColor="@color/branco"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</RelativeLayout>

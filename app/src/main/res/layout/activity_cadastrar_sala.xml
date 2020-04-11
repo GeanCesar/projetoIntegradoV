@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:src="@drawable/fundo_tela_login" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/grandient_fundo_login"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="82dp"
+                android:layout_height="75dp"
+                android:padding="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:src="@drawable/ic_user" />
+
+            <LinearLayout
+                android:layout_width="201dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_usuario_salas"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="USUÁRIO"
+                    android:textColor="@color/azul_projeto"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_cargo_salas"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Professor"
+                    android:textColor="@color/branco" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:text="Cadastrar sala"
+            android:textColor="@color/branco"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="Nº sala"
+            android:textColor="@color/azul_projeto"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etNSala"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/branco"
+            android:hint="Ex. 10"
+            android:inputType="none|numberSigned"
+            android:textColor="@color/branco"
+            android:textColorHint="@color/cinza"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="18dp" />
+
+        <Switch
+            android:id="@+id/sw_Laboratorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:text="Laboratório"
+            android:textColor="@color/azul_projeto"
+            android:textColorHighlight="@color/azul_projeto"
+            android:textColorLink="@color/azul_projeto"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:thumbTint="@color/azul_projeto"
+            android:trackTint="#FFFFFF" />
+
+        <Switch
+            android:id="@+id/sw_Projetor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:text="Projetor"
+            android:textColor="@color/azul_projeto"
+            android:textColorHighlight="@color/azul_projeto"
+            android:textColorLink="@color/azul_projeto"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:thumbTint="@color/azul_projeto"
+            android:trackTint="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btCadastrarSala"
+            style="@android:style/Widget.Material.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_button_padrao"
+            android:text="CADASTRAR"
+            android:textColor="@color/branco"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>
