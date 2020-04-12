@@ -1,4 +1,4 @@
-package com.example.projetointegrado;
+package com.example.projetointegrado.reservas;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetointegrado.R;
 import com.example.projetointegrado.modelos.ModeloRecyclerView;
 
 import java.util.ArrayList;
@@ -33,10 +34,8 @@ public class AdapterRecylcerView extends RecyclerView.Adapter<HolderRecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull HolderRecyclerView holder, int position) {
-
         holder.tvHeader.setText(modelo.get(position).getHeader());
         holder.tvContent.setText(modelo.get(position).getContent());
-
     }
 
     @Override

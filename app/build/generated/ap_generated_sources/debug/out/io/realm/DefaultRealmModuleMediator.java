@@ -28,8 +28,8 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     static {
         Set<Class<? extends RealmModel>> modelClasses = new HashSet<Class<? extends RealmModel>>(3);
         modelClasses.add(com.example.projetointegrado.modelos.Usuario.class);
-        modelClasses.add(com.example.projetointegrado.modelos.Sala.class);
         modelClasses.add(com.example.projetointegrado.modelos.Reservas.class);
+        modelClasses.add(com.example.projetointegrado.modelos.Sala.class);
         MODEL_CLASSES = Collections.unmodifiableSet(modelClasses);
     }
 
@@ -37,8 +37,8 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public Map<Class<? extends RealmModel>, OsObjectSchemaInfo> getExpectedObjectSchemaInfoMap() {
         Map<Class<? extends RealmModel>, OsObjectSchemaInfo> infoMap = new HashMap<Class<? extends RealmModel>, OsObjectSchemaInfo>(3);
         infoMap.put(com.example.projetointegrado.modelos.Usuario.class, io.realm.UsuarioRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.example.projetointegrado.modelos.Sala.class, io.realm.SalaRealmProxy.getExpectedObjectSchemaInfo());
         infoMap.put(com.example.projetointegrado.modelos.Reservas.class, io.realm.ReservasRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.example.projetointegrado.modelos.Sala.class, io.realm.SalaRealmProxy.getExpectedObjectSchemaInfo());
         return infoMap;
     }
 
@@ -49,11 +49,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return io.realm.UsuarioRealmProxy.createColumnInfo(schemaInfo);
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return io.realm.SalaRealmProxy.createColumnInfo(schemaInfo);
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return io.realm.ReservasRealmProxy.createColumnInfo(schemaInfo);
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return io.realm.SalaRealmProxy.createColumnInfo(schemaInfo);
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -65,11 +65,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return io.realm.UsuarioRealmProxy.getFieldNames();
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return io.realm.SalaRealmProxy.getFieldNames();
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return io.realm.ReservasRealmProxy.getFieldNames();
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return io.realm.SalaRealmProxy.getFieldNames();
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -81,11 +81,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return io.realm.UsuarioRealmProxy.getSimpleClassName();
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return io.realm.SalaRealmProxy.getSimpleClassName();
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return io.realm.ReservasRealmProxy.getSimpleClassName();
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return io.realm.SalaRealmProxy.getSimpleClassName();
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -100,11 +100,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
             if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
                 return clazz.cast(new io.realm.UsuarioRealmProxy());
             }
-            if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-                return clazz.cast(new io.realm.SalaRealmProxy());
-            }
             if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
                 return clazz.cast(new io.realm.ReservasRealmProxy());
+            }
+            if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+                return clazz.cast(new io.realm.SalaRealmProxy());
             }
             throw getMissingProxyClassException(clazz);
         } finally {
@@ -126,11 +126,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return clazz.cast(io.realm.UsuarioRealmProxy.copyOrUpdate(realm, (com.example.projetointegrado.modelos.Usuario) obj, update, cache));
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return clazz.cast(io.realm.SalaRealmProxy.copyOrUpdate(realm, (com.example.projetointegrado.modelos.Sala) obj, update, cache));
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return clazz.cast(io.realm.ReservasRealmProxy.copyOrUpdate(realm, (com.example.projetointegrado.modelos.Reservas) obj, update, cache));
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return clazz.cast(io.realm.SalaRealmProxy.copyOrUpdate(realm, (com.example.projetointegrado.modelos.Sala) obj, update, cache));
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -143,10 +143,10 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             io.realm.UsuarioRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Usuario) object, cache);
-        } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            io.realm.SalaRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Sala) object, cache);
         } else if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             io.realm.ReservasRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Reservas) object, cache);
+        } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            io.realm.SalaRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Sala) object, cache);
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -166,20 +166,20 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
             if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
                 io.realm.UsuarioRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Usuario) object, cache);
-            } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-                io.realm.SalaRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Sala) object, cache);
             } else if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
                 io.realm.ReservasRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Reservas) object, cache);
+            } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+                io.realm.SalaRealmProxy.insert(realm, (com.example.projetointegrado.modelos.Sala) object, cache);
             } else {
                 throw getMissingProxyClassException(clazz);
             }
             if (iterator.hasNext()) {
                 if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
                     io.realm.UsuarioRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-                    io.realm.SalaRealmProxy.insert(realm, iterator, cache);
                 } else if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
                     io.realm.ReservasRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+                    io.realm.SalaRealmProxy.insert(realm, iterator, cache);
                 } else {
                     throw getMissingProxyClassException(clazz);
                 }
@@ -195,10 +195,10 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             io.realm.UsuarioRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Usuario) obj, cache);
-        } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            io.realm.SalaRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Sala) obj, cache);
         } else if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             io.realm.ReservasRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Reservas) obj, cache);
+        } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            io.realm.SalaRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Sala) obj, cache);
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -218,20 +218,20 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
             if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
                 io.realm.UsuarioRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Usuario) object, cache);
-            } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-                io.realm.SalaRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Sala) object, cache);
             } else if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
                 io.realm.ReservasRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Reservas) object, cache);
+            } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+                io.realm.SalaRealmProxy.insertOrUpdate(realm, (com.example.projetointegrado.modelos.Sala) object, cache);
             } else {
                 throw getMissingProxyClassException(clazz);
             }
             if (iterator.hasNext()) {
                 if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
                     io.realm.UsuarioRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-                    io.realm.SalaRealmProxy.insertOrUpdate(realm, iterator, cache);
                 } else if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
                     io.realm.ReservasRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+                    io.realm.SalaRealmProxy.insertOrUpdate(realm, iterator, cache);
                 } else {
                     throw getMissingProxyClassException(clazz);
                 }
@@ -247,11 +247,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return clazz.cast(io.realm.UsuarioRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return clazz.cast(io.realm.SalaRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return clazz.cast(io.realm.ReservasRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return clazz.cast(io.realm.SalaRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -264,11 +264,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return clazz.cast(io.realm.UsuarioRealmProxy.createUsingJsonStream(realm, reader));
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return clazz.cast(io.realm.SalaRealmProxy.createUsingJsonStream(realm, reader));
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return clazz.cast(io.realm.ReservasRealmProxy.createUsingJsonStream(realm, reader));
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return clazz.cast(io.realm.SalaRealmProxy.createUsingJsonStream(realm, reader));
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -282,11 +282,11 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.example.projetointegrado.modelos.Usuario.class)) {
             return clazz.cast(io.realm.UsuarioRealmProxy.createDetachedCopy((com.example.projetointegrado.modelos.Usuario) realmObject, 0, maxDepth, cache));
         }
-        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
-            return clazz.cast(io.realm.SalaRealmProxy.createDetachedCopy((com.example.projetointegrado.modelos.Sala) realmObject, 0, maxDepth, cache));
-        }
         if (clazz.equals(com.example.projetointegrado.modelos.Reservas.class)) {
             return clazz.cast(io.realm.ReservasRealmProxy.createDetachedCopy((com.example.projetointegrado.modelos.Reservas) realmObject, 0, maxDepth, cache));
+        }
+        if (clazz.equals(com.example.projetointegrado.modelos.Sala.class)) {
+            return clazz.cast(io.realm.SalaRealmProxy.createDetachedCopy((com.example.projetointegrado.modelos.Sala) realmObject, 0, maxDepth, cache));
         }
         throw getMissingProxyClassException(clazz);
     }

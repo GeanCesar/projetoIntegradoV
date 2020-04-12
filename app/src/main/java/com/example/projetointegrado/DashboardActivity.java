@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
+import com.example.projetointegrado.reservas.ReservasActivity;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 

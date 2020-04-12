@@ -1,4 +1,4 @@
-package com.example.projetointegrado;
+package com.example.projetointegrado.reservas;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetointegrado.R;
+import com.example.projetointegrado.UsuarioLogado;
+import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.ModeloRecyclerView;
 import com.example.projetointegrado.modelos.Reservas;
-import com.example.projetointegrado.modelos.Usuario;
 
 import java.util.ArrayList;
 

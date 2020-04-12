@@ -11,7 +11,7 @@
 9-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
 10
 11    <application
-11-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:5:5-27:19
+11-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:5:5-30:19
 12        android:allowBackup="true"
 12-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -26,37 +26,42 @@
 18-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:9:9-54
 19        android:supportsRtl="true"
 19-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:10:9-35
-20        android:theme="@style/AppTheme" >
-20-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:11:9-40
-21        <activity android:name="com.example.projetointegrado.MainActivity" >
-21-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:9-19:20
-21-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:19-47
-22            <intent-filter>
-22-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:14:13-18:29
-23                <action android:name="android.intent.action.MAIN" />
-23-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:15:17-69
-23-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:15:25-66
-24
-25                <category android:name="android.intent.category.LAUNCHER" />
-25-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:17:17-77
-25-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:17:27-74
-26            </intent-filter>
-27        </activity>
-28        <activity android:name="com.example.projetointegrado.LoginActivity" />
-28-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:9-51
-28-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:19-48
-29        <activity android:name="com.example.projetointegrado.CadastrarActivity" />
-29-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:9-55
-29-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:19-52
-30        <activity android:name="com.example.projetointegrado.DashboardActivity" />
-30-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:23:9-55
-30-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:23:19-52
-31        <activity android:name="com.example.projetointegrado.ReservasActivity" />
-31-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:9-54
-31-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:19-51
-32        <activity android:name="com.example.projetointegrado.cadastraSala.CadastrarSalaActivity" />
-32-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:25:9-72
-32-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:25:19-69
-33    </application>
-34
-35</manifest>
+20        android:testOnly="true"
+21        android:theme="@style/AppTheme" >
+21-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:11:9-40
+22        <activity android:name="com.example.projetointegrado.MainActivity" >
+22-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:9-15:20
+22-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:19-47
+23        </activity>
+24        <activity android:name="com.example.projetointegrado.LoginActivity" />
+24-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:17:9-51
+24-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:17:19-48
+25        <activity android:name="com.example.projetointegrado.CadastrarActivity" />
+25-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:18:9-55
+25-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:18:19-52
+26        <activity android:name="com.example.projetointegrado.DashboardActivity" />
+26-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:19:9-55
+26-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:19:19-52
+27        <activity android:name="com.example.projetointegrado.reservas.ReservasActivity" />
+27-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:20:9-63
+27-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:20:19-60
+28        <activity android:name="com.example.projetointegrado.cadastraSala.CadastrarSalaActivity" />
+28-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:9-72
+28-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:19-69
+29        <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" >
+29-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:9-28:20
+29-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:19-64
+30            <intent-filter>
+30-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:23:13-27:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:17-69
+31-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:26:17-77
+33-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:26:27-74
+34            </intent-filter>
+35        </activity>
+36    </application>
+37
+38</manifest>
