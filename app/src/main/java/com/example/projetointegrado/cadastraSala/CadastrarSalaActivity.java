@@ -65,29 +65,55 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
             boolean projetor = sw_projetor.isChecked();
             int nSala = Uteis.converteStringToInt(etSala.getText().toString());
 
-            Sala sala = new Sala();
-            sala.setnSala(nSala);
-            sala.setProjetor(projetor);
-            sala.setLaboratorio(laboratorio);
 
-            // Inicializa o Realm
-            Realm.init(getApplicationContext());
+            if(!existe(laboratorio, nSala)){
+                Sala sala = new Sala();
+                sala.setnSala(nSala);
+                sala.setProjetor(projetor);
+                sala.setLaboratorio(laboratorio);
 
-            // Cria a configuração do realm
-            RealmConfiguration config = new RealmConfiguration.Builder().build();
-            Realm.setDefaultConfiguration(config);
-            Realm banco = Realm.getInstance(config);
+                // Inicializa o Realm
+                Realm.init(getApplicationContext());
+
+                // Cria a configuração do realm
+                RealmConfiguration config = new RealmConfiguration.Builder().build();
+                Realm.setDefaultConfiguration(config);
+                Realm banco = Realm.getInstance(config);
 
 
-            banco.beginTransaction();
-            banco.copyToRealm(sala);
-            banco.commitTransaction();
+                banco.beginTransaction();
+                banco.copyToRealm(sala);
+                banco.commitTransaction();
 
-            banco.close();
-            Toast.makeText(this, "Cadastrada com sucesso", Toast.LENGTH_SHORT).show();
-            finish();
+                banco.close();
+                Toast.makeText(this, "Cadastrada com sucesso", Toast.LENGTH_SHORT).show();
+                finish();
+            }else {
+                Toast.makeText(this, "Sala já cadastrada", Toast.LENGTH_SHORT).show();
+            }
         }
     }
+
+    private boolean existe(boolean laboratorio, int numero){
+
+        // Inicializa o Realm
+        Realm.init(getApplicationContext());
+
+        // Cria a configuração do realm
+        RealmConfiguration config = new RealmConfiguration.Builder().build();
+        Realm.setDefaultConfiguration(config);
+        Realm banco = Realm.getInstance(config);
+
+        Sala s = banco.where(Sala.class).equalTo("laboratorio", laboratorio)
+                .equalTo("nSala", numero).findFirst();
+
+        if(s == null){
+            return false;
+        }
+
+        return true;
+    }
+
 
     private boolean consisteDados(){
         if(Uteis.converteStringToInt(etSala.getText().toString())==0){
