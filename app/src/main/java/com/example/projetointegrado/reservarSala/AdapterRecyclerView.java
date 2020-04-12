@@ -15,6 +15,9 @@ import com.example.projetointegrado.modelos.Sala;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 public class AdapterRecyclerView extends RecyclerView.Adapter<HolderRecyclerView>{
 
     Context c;
@@ -45,7 +48,19 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<HolderRecyclerView
             @Override
             public void onClick(View view) {
                 Sala s = (Sala) view.getTag();
-                ((ReservarActivity)c).valores.setSala(s);
+
+                Realm.init(c);
+                // Cria a configuração do realm
+                RealmConfiguration config = new RealmConfiguration.Builder().build();
+                Realm.setDefaultConfiguration(config);
+                Realm realm = Realm.getInstance(config);
+
+                //Busca todos os usuarios cadastrados
+                Sala sala = realm.where(Sala.class)
+                        .equalTo("nSala", s.getnSala())
+                        .equalTo("laboratorio", s.isLaboratorio()).findFirst();
+
+                ((ReservarActivity)c).valores.setSala(sala);
                 ((ReservarActivity)c).chamaCalendario();
             }
         });
