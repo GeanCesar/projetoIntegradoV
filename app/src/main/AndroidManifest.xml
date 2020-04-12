@@ -11,7 +11,10 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".MainActivity" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".LoginActivity" />
@@ -19,13 +22,7 @@
         <activity android:name=".DashboardActivity" />
         <activity android:name=".reservas.ReservasActivity" />
         <activity android:name=".cadastraSala.CadastrarSalaActivity" />
-        <activity android:name=".reservarSala.ReservarActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".reservarSala.ReservarActivity" />
 
     </application>
 

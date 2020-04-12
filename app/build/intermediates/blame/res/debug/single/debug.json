@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_calendario.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/calendario.xml"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     },

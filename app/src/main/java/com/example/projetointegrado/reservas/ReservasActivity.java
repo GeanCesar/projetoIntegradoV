@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class ReservasActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -52,14 +53,16 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
 
         Realm.init(getApplicationContext());
 
-        // Cria a configuração do realm
+        // Cria a configuração do realmw
         RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
         Realm realm = Realm.getInstance(config);
 
         //Busca todos os usuarios cadastrados
         RealmResults<Reservas> reservas = realm.where(Reservas.class)
-                .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome()).findAll();
+                .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome()).findAll()
+                .sort("sala.laboratorio", Sort.DESCENDING);
+
 
         for (Reservas r : reservas){
             ModeloRecyclerView modelo = new ModeloRecyclerView();

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
 MERGED from [io.realm:realm-android-library:4.1.1] /home/gean/.gradle/caches/transforms-2/files-2.1/2225aa7caf145072d280055d97b814d2/jetified-realm-android-library-4.1.1/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.0.0] /home/gean/.gradle/caches/transforms-2/files-2.1/4a04aa4a0fc9581fb54e068cd983665e/material-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /home/gean/.gradle/caches/transforms-2/files-2.1/8e486cdd5d92f5314a3897eadf755392/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
@@ -45,25 +45,25 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] /home/gean/.gradle/caches/tra
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/gean/.gradle/caches/transforms-2/files-2.1/9a3cbbaf56acf1af09a581190dd3ddfd/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/gean/.gradle/caches/transforms-2/files-2.1/ce6ad0b8f7fc61957185d54f868f69d2/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/gean/.gradle/caches/transforms-2/files-2.1/7be06d22134dc153c76ed150b4cb4e47/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
 	package
 		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:3:5-43
 		INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
 		INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
 		INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-32:12
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:1-29:12
 		INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:5:5-30:19
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:5:5-27:19
 MERGED from [com.google.android.material:material:1.0.0] /home/gean/.gradle/caches/transforms-2/files-2.1/4a04aa4a0fc9581fb54e068cd983665e/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /home/gean/.gradle/caches/transforms-2/files-2.1/4a04aa4a0fc9581fb54e068cd983665e/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/gean/.gradle/caches/transforms-2/files-2.1/623926ab7776866ffb2c4f87ebbfeeec/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
@@ -87,43 +87,43 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/gean/
 	android:theme
 		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:11:9-40
 activity#com.example.projetointegrado.MainActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:9-15:20
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:9-18:20
 	android:name
 		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:13:19-47
-activity#com.example.projetointegrado.LoginActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:17:9-51
-	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:17:19-48
-activity#com.example.projetointegrado.CadastrarActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:18:9-55
-	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:18:19-52
-activity#com.example.projetointegrado.DashboardActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:19:9-55
-	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:19:19-52
-activity#com.example.projetointegrado.reservas.ReservasActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:20:9-63
-	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:20:19-60
-activity#com.example.projetointegrado.cadastraSala.CadastrarSalaActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:9-72
-	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:19-69
-activity#com.example.projetointegrado.reservarSala.ReservarActivity
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:9-28:20
-	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:19-64
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:23:13-27:29
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:14:13-17:29
 action#android.intent.action.MAIN
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:17-69
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:15:17-69
 	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:25-66
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:15:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:26:17-77
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:16:17-77
 	android:name
-		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:26:27-74
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:16:27-74
+activity#com.example.projetointegrado.LoginActivity
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:20:9-51
+	android:name
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:20:19-48
+activity#com.example.projetointegrado.CadastrarActivity
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:9-55
+	android:name
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:21:19-52
+activity#com.example.projetointegrado.DashboardActivity
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:9-55
+	android:name
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:22:19-52
+activity#com.example.projetointegrado.reservas.ReservasActivity
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:23:9-63
+	android:name
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:23:19-60
+activity#com.example.projetointegrado.cadastraSala.CadastrarSalaActivity
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:9-72
+	android:name
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:24:19-69
+activity#com.example.projetointegrado.reservarSala.ReservarActivity
+ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:25:9-67
+	android:name
+		ADDED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:25:19-64
 uses-sdk
 INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
+import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.example.projetointegrado.reservas.ReservasActivity;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +21,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     ImageView ivSair;
     RelativeLayout btReservas;
     RelativeLayout btSala;
+    RelativeLayout btReservar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         btSala = (RelativeLayout)findViewById(R.id.bt_Sala);
         btSala.setOnClickListener(this);
 
+        btReservar = (RelativeLayout)findViewById(R.id.bt_Reservar);
+        btReservar.setOnClickListener(this);
+
         validaMenu();
     }
 
@@ -59,6 +64,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
         }else if(v.getId() == btSala.getId()){
             Intent intent = new Intent(this, CadastrarSalaActivity.class);
+            startActivity(intent);
+        }else if(v.getId() == btReservar.getId()){
+            Intent intent = new Intent(this, ReservarActivity.class);
             startActivity(intent);
         }
     }

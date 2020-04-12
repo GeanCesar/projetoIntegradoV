@@ -21,19 +21,18 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.projetointegrado.MainActivity" >
-        </activity>
-        <activity android:name="com.example.projetointegrado.LoginActivity" />
-        <activity android:name="com.example.projetointegrado.CadastrarActivity" />
-        <activity android:name="com.example.projetointegrado.DashboardActivity" />
-        <activity android:name="com.example.projetointegrado.reservas.ReservasActivity" />
-        <activity android:name="com.example.projetointegrado.cadastraSala.CadastrarSalaActivity" />
-        <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.projetointegrado.LoginActivity" />
+        <activity android:name="com.example.projetointegrado.CadastrarActivity" />
+        <activity android:name="com.example.projetointegrado.DashboardActivity" />
+        <activity android:name="com.example.projetointegrado.reservas.ReservasActivity" />
+        <activity android:name="com.example.projetointegrado.cadastraSala.CadastrarSalaActivity" />
+        <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" />
     </application>
 
 </manifest>

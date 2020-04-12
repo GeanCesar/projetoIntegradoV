@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (usuario.size() > 0) {
                 Intent intent = new Intent(this, DashboardActivity.class);
                 UsuarioLogado.usuarioLogado = new Usuario();
+                UsuarioLogado.usuarioLogado.setEmail(usuario.get(0).getEmail());
                 UsuarioLogado.usuarioLogado.setNome(usuario.get(0).getNome());
                 UsuarioLogado.cargo = "Professor";
 

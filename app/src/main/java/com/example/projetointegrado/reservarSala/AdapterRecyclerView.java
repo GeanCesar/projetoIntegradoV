@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetointegrado.CalendarFragment;
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Sala;
@@ -46,6 +45,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<HolderRecyclerView
             @Override
             public void onClick(View view) {
                 Sala s = (Sala) view.getTag();
+                ((ReservarActivity)c).valores.setSala(s);
                 ((ReservarActivity)c).chamaCalendario();
             }
         });
