@@ -245,6 +245,61 @@
 
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/bt_Aprovar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.65"
+                        android:background="@color/cor_botao_dash"
+                        android:clickable="true"
+                        android:elevation="@android:dimen/app_icon_size"
+                        android:paddingBottom="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="154dp"
+                                android:clickable="true"
+                                android:padding="40dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/confirm" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_alignParentBottom="true"
+                                android:text="Aprovar reservas"
+                                android:textAlignment="center"
+                                android:textColor="@color/branco"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.65"
+                        android:background="@color/transparent"
+                        android:clickable="true"
+                        android:elevation="@android:dimen/app_icon_size"
+                        android:paddingBottom="15dp" />
+
+
+                </LinearLayout>
             </LinearLayout>
 
         </ScrollView>

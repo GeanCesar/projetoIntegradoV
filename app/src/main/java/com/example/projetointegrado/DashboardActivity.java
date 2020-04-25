@@ -22,6 +22,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout btReservas;
     RelativeLayout btSala;
     RelativeLayout btReservar;
+    RelativeLayout btAprovar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         btSala = (RelativeLayout)findViewById(R.id.bt_Sala);
         btSala.setOnClickListener(this);
+
+        btAprovar = (RelativeLayout)findViewById(R.id.bt_Aprovar);
+        btAprovar.setOnClickListener(this);
 
         btReservar = (RelativeLayout)findViewById(R.id.bt_Reservar);
         btReservar.setOnClickListener(this);
@@ -74,8 +78,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     private void validaMenu(){
         if(UsuarioLogado.cargo.equalsIgnoreCase("Administrador")){
             btSala.setVisibility(View.VISIBLE);
+            btAprovar.setVisibility(View.VISIBLE);
         }else{
             btSala.setVisibility(View.INVISIBLE);
+            btAprovar.setVisibility(View.INVISIBLE);
         }
     }
 }
