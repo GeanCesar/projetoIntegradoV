@@ -13,8 +13,9 @@ public class Reservas extends RealmObject {
     @Required
     private Date data;
 
-
     private Sala sala;
+
+    private int status;
 
     public Usuario getUsuario() {
         return usuario;
@@ -38,5 +39,13 @@ public class Reservas extends RealmObject {
 
     public void setSala(Sala sala) {
         this.sala = sala;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

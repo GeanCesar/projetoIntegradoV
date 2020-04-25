@@ -39,13 +39,15 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
         long usuarioIndex;
         long dataIndex;
         long salaIndex;
+        long statusIndex;
 
         ReservasColumnInfo(OsSchemaInfo schemaInfo) {
-            super(3);
+            super(4);
             OsObjectSchemaInfo objectSchemaInfo = schemaInfo.getObjectSchemaInfo("Reservas");
             this.usuarioIndex = addColumnDetails("usuario", objectSchemaInfo);
             this.dataIndex = addColumnDetails("data", objectSchemaInfo);
             this.salaIndex = addColumnDetails("sala", objectSchemaInfo);
+            this.statusIndex = addColumnDetails("status", objectSchemaInfo);
         }
 
         ReservasColumnInfo(ColumnInfo src, boolean mutable) {
@@ -65,16 +67,18 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
             dst.usuarioIndex = src.usuarioIndex;
             dst.dataIndex = src.dataIndex;
             dst.salaIndex = src.salaIndex;
+            dst.statusIndex = src.statusIndex;
         }
     }
 
     private static final OsObjectSchemaInfo expectedObjectSchemaInfo = createExpectedObjectSchemaInfo();
     private static final List<String> FIELD_NAMES;
     static {
-        List<String> fieldNames = new ArrayList<String>(3);
+        List<String> fieldNames = new ArrayList<String>(4);
         fieldNames.add("usuario");
         fieldNames.add("data");
         fieldNames.add("sala");
+        fieldNames.add("status");
         FIELD_NAMES = Collections.unmodifiableList(fieldNames);
     }
 
@@ -209,11 +213,34 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
         proxyState.getRow$realm().setLink(columnInfo.salaIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
     }
 
+    @Override
+    @SuppressWarnings("cast")
+    public int realmGet$status() {
+        proxyState.getRealm$realm().checkIfValid();
+        return (int) proxyState.getRow$realm().getLong(columnInfo.statusIndex);
+    }
+
+    @Override
+    public void realmSet$status(int value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            final Row row = proxyState.getRow$realm();
+            row.getTable().setLong(columnInfo.statusIndex, row.getIndex(), value, true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        proxyState.getRow$realm().setLong(columnInfo.statusIndex, value);
+    }
+
     private static OsObjectSchemaInfo createExpectedObjectSchemaInfo() {
-        OsObjectSchemaInfo.Builder builder = new OsObjectSchemaInfo.Builder("Reservas", 3, 0);
+        OsObjectSchemaInfo.Builder builder = new OsObjectSchemaInfo.Builder("Reservas", 4, 0);
         builder.addPersistedLinkProperty("usuario", RealmFieldType.OBJECT, "Usuario");
         builder.addPersistedProperty("data", RealmFieldType.DATE, !Property.PRIMARY_KEY, !Property.INDEXED, Property.REQUIRED);
         builder.addPersistedLinkProperty("sala", RealmFieldType.OBJECT, "Sala");
+        builder.addPersistedProperty("status", RealmFieldType.INTEGER, !Property.PRIMARY_KEY, !Property.INDEXED, Property.REQUIRED);
         return builder.build();
     }
 
@@ -274,6 +301,13 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
                 objProxy.realmSet$sala(salaObj);
             }
         }
+        if (json.has("status")) {
+            if (json.isNull("status")) {
+                throw new IllegalArgumentException("Trying to set non-nullable field 'status' to null.");
+            } else {
+                objProxy.realmSet$status((int) json.getInt("status"));
+            }
+        }
         return obj;
     }
 
@@ -314,6 +348,13 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
                 } else {
                     com.example.projetointegrado.modelos.Sala salaObj = SalaRealmProxy.createUsingJsonStream(realm, reader);
                     objProxy.realmSet$sala(salaObj);
+                }
+            } else if (name.equals("status")) {
+                if (reader.peek() != JsonToken.NULL) {
+                    objProxy.realmSet$status((int) reader.nextInt());
+                } else {
+                    reader.skipValue();
+                    throw new IllegalArgumentException("Trying to set non-nullable field 'status' to null.");
                 }
             } else {
                 reader.skipValue();
@@ -380,6 +421,7 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
                 realmObjectCopy.realmSet$sala(SalaRealmProxy.copyOrUpdate(realm, salaObj, update, cache));
             }
         }
+        realmObjectCopy.realmSet$status(realmObjectSource.realmGet$status());
         return realmObject;
     }
 
@@ -414,6 +456,7 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
             }
             Table.nativeSetLink(tableNativePtr, columnInfo.salaIndex, rowIndex, cachesala, false);
         }
+        Table.nativeSetLong(tableNativePtr, columnInfo.statusIndex, rowIndex, ((ReservasRealmProxyInterface) object).realmGet$status(), false);
         return rowIndex;
     }
 
@@ -455,6 +498,7 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
                 }
                 table.setLink(columnInfo.salaIndex, rowIndex, cachesala, false);
             }
+            Table.nativeSetLong(tableNativePtr, columnInfo.statusIndex, rowIndex, ((ReservasRealmProxyInterface) object).realmGet$status(), false);
         }
     }
 
@@ -495,6 +539,7 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
         } else {
             Table.nativeNullifyLink(tableNativePtr, columnInfo.salaIndex, rowIndex);
         }
+        Table.nativeSetLong(tableNativePtr, columnInfo.statusIndex, rowIndex, ((ReservasRealmProxyInterface) object).realmGet$status(), false);
         return rowIndex;
     }
 
@@ -542,6 +587,7 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
             } else {
                 Table.nativeNullifyLink(tableNativePtr, columnInfo.salaIndex, rowIndex);
             }
+            Table.nativeSetLong(tableNativePtr, columnInfo.statusIndex, rowIndex, ((ReservasRealmProxyInterface) object).realmGet$status(), false);
         }
     }
 
@@ -571,6 +617,7 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
 
         // Deep copy of sala
         unmanagedCopy.realmSet$sala(SalaRealmProxy.createDetachedCopy(realmSource.realmGet$sala(), currentDepth + 1, maxDepth, cache));
+        unmanagedCopy.realmSet$status(realmSource.realmGet$status());
 
         return unmanagedObject;
     }
@@ -592,6 +639,10 @@ public class ReservasRealmProxy extends com.example.projetointegrado.modelos.Res
         stringBuilder.append(",");
         stringBuilder.append("{sala:");
         stringBuilder.append(realmGet$sala() != null ? "Sala" : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{status:");
+        stringBuilder.append(realmGet$status());
         stringBuilder.append("}");
         stringBuilder.append("]");
         return stringBuilder.toString();

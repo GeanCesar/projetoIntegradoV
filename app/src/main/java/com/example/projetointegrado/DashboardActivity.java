@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
 import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.example.projetointegrado.reservas.ReservasActivity;
@@ -23,6 +25,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout btSala;
     RelativeLayout btReservar;
     RelativeLayout btAprovar;
+    LinearLayout llAdmin;
+    LinearLayout llProfessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         String nome = UsuarioLogado.usuarioLogado.getNome();
         String cargo = UsuarioLogado.cargo;
+
+        llAdmin = (LinearLayout) findViewById(R.id.ll_Admin);
+        llProfessor = (LinearLayout) findViewById(R.id.ll_Professor);
 
         tvUsuario = (TextView) findViewById(R.id.tv_usuario);
         tvUsuario.setText(nome);
@@ -72,16 +79,19 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }else if(v.getId() == btReservar.getId()){
             Intent intent = new Intent(this, ReservarActivity.class);
             startActivity(intent);
+        }else if(v.getId() == btAprovar.getId()){
+            Intent intent = new Intent(this, AprovarActivity.class);
+            startActivity(intent);
         }
     }
 
     private void validaMenu(){
         if(UsuarioLogado.cargo.equalsIgnoreCase("Administrador")){
-            btSala.setVisibility(View.VISIBLE);
-            btAprovar.setVisibility(View.VISIBLE);
+            llAdmin.setVisibility(View.VISIBLE);
+            llProfessor.setVisibility(View.GONE);
         }else{
-            btSala.setVisibility(View.INVISIBLE);
-            btAprovar.setVisibility(View.INVISIBLE);
+            llProfessor.setVisibility(View.VISIBLE);
+            llAdmin.setVisibility(View.GONE);
         }
     }
 }

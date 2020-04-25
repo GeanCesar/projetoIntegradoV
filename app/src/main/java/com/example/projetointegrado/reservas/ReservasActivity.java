@@ -13,6 +13,7 @@ import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.ModeloRecyclerView;
 import com.example.projetointegrado.modelos.Reservas;
+import com.example.projetointegrado.modelos.StatusReserva;
 
 import java.util.ArrayList;
 
@@ -58,9 +59,10 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
         Realm.setDefaultConfiguration(config);
         Realm realm = Realm.getInstance(config);
 
-        //Busca todos os usuarios cadastrados
+        //Busca todos as reservas confirmadas
         RealmResults<Reservas> reservas = realm.where(Reservas.class)
-                .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome()).findAll()
+                .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome())
+                .equalTo("status", StatusReserva.APROVADO.getCodigo()).findAll()
                 .sort("sala.laboratorio", Sort.DESCENDING);
 
 

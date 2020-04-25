@@ -32,6 +32,7 @@
         <activity android:name="com.example.projetointegrado.reservas.ReservasActivity" />
         <activity android:name="com.example.projetointegrado.cadastraSala.CadastrarSalaActivity" />
         <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" />
+        <activity android:name="com.example.projetointegrado.aprovarReserva.AprovarActivity" />
     </application>
 
 </manifest>

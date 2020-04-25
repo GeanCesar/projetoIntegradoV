@@ -11,7 +11,7 @@
 9-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml
 10
 11    <application
-11-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:5:5-27:19
+11-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:5:5-28:19
 12        android:allowBackup="true"
 12-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -61,6 +61,9 @@
 34        <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" />
 34-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:25:9-67
 34-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:25:19-64
-35    </application>
-36
-37</manifest>
+35        <activity android:name="com.example.projetointegrado.aprovarReserva.AprovarActivity" />
+35-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:26:9-68
+35-->/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/AndroidManifest.xml:26:19-65
+36    </application>
+37
+38</manifest>

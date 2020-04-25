@@ -727,6 +727,7 @@ color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
 color preto
+color preto_escuro
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -750,6 +751,8 @@ color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
 color transparent
+color verde
+color vermelho
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1070,6 +1073,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable color_cursor
+drawable confirm
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1107,6 +1111,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable rounded_button_cancel
+drawable rounded_button_confirm
 drawable rounded_button_padrao
 drawable rounded_button_secundario
 drawable tooltip_frame_dark
@@ -1187,7 +1193,11 @@ id btCadastrarSala
 id btLimpar
 id btLogin
 id btReservarSala
+id bt_Aprovar
+id bt_AprovarFragment
+id bt_CancelarFragment
 id bt_Historico
+id bt_RecusarFragment
 id bt_Reservar
 id bt_Reservas
 id bt_Sala
@@ -1269,6 +1279,9 @@ id line1
 id line3
 id listMode
 id list_item
+id ll_Admin
+id ll_LinhaAprovar
+id ll_Professor
 id masked
 id media_actions
 id message
@@ -1302,6 +1315,7 @@ id right_icon
 id right_side
 id rv_Reservar
 id rv_Reservas
+id rv_aprovar
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
@@ -1385,12 +1399,17 @@ id transition_scene_layoutid_cache
 id transition_transform
 id tvContentItem
 id tvHeadItem
+id tvHeadItemAprovar
 id tvHeadItemReservar
+id tvItemDataAprovar
+id tvProfessorAprovar
 id tv_cargo
+id tv_cargo_aprovar
 id tv_cargo_reservar
 id tv_cargo_reservas
 id tv_cargo_salas
 id tv_usuario
+id tv_usuario_aprovar
 id tv_usuario_reservar
 id tv_usuario_reservas
 id tv_usuario_salas
@@ -1459,6 +1478,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_aprovar
 layout activity_cadastrar
 layout activity_cadastrar_sala
 layout activity_dashboard
@@ -1481,7 +1501,9 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout fragment_aprovar
 layout list_item
+layout list_item_aprovar
 layout list_item_reservar
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include

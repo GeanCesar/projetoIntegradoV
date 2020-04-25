@@ -19,6 +19,7 @@ import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
+import com.example.projetointegrado.modelos.StatusReserva;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -173,11 +174,12 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void insereNoBanco(){
-        // Instancia do objeto e inserir valores
+        // Instancia do objeto e inserir valoresro
         Reservas res = new Reservas();
         res.setUsuario(UsuarioLogado.getUsuarioLogadoRealm(this, UsuarioLogado.usuarioLogado.getEmail()));
         res.setSala(valores.getSala());
         res.setData(valores.getDataHora().getTime());
+        res.setStatus(StatusReserva.PENDENTE.getCodigo());
 
         Realm.init(getApplicationContext());
 

@@ -23,6 +23,7 @@
         <activity android:name=".reservas.ReservasActivity" />
         <activity android:name=".cadastraSala.CadastrarSalaActivity" />
         <activity android:name=".reservarSala.ReservarActivity" />
+        <activity android:name=".aprovarReserva.AprovarActivity" />
 
     </application>
 
