@@ -1,13 +1,9 @@
 package com.example.projetointegrado.aprovarReserva;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,12 +29,24 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
     RecyclerView mRecyclerView;
     AdapterRecyclerView myAdapter;
 
+    TextView tvUsuario;
+    TextView tvCargo;
+
     public ValoresRetornados valores = new ValoresRetornados();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aprovar);
+
+        String nome = UsuarioLogado.usuarioLogado.getNome();
+        String cargo = UsuarioLogado.cargo;
+
+        tvUsuario = (TextView) findViewById(R.id.tv_usuario_aprovar);
+        tvUsuario.setText(nome);
+
+        tvCargo = (TextView) findViewById(R.id.tv_cargo_aprovar);
+        tvCargo.setText(cargo);
 
         mRecyclerView = findViewById(R.id.rv_aprovar);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

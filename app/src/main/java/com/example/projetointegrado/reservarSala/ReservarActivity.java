@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -38,12 +39,24 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
     Button btReservarSala;
     Button btLimpar;
 
+    TextView tvUsuario;
+    TextView tvCargo;
+
     public ValoresRetornados valores = new ValoresRetornados();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservar);
+
+        String nome = UsuarioLogado.usuarioLogado.getNome();
+        String cargo = UsuarioLogado.cargo;
+
+        tvUsuario = (TextView) findViewById(R.id.tv_usuario_reservar);
+        tvUsuario.setText(nome);
+
+        tvCargo = (TextView) findViewById(R.id.tv_cargo_reservar);
+        tvCargo.setText(cargo);
 
         mRecyclerView = findViewById(R.id.rv_Reservar);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
