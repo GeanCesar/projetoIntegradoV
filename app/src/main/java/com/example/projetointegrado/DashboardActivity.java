@@ -73,15 +73,19 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }else if(v.getId() == btReservas.getId()){
             Intent intent = new Intent(this, ReservasActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }else if(v.getId() == btSala.getId()){
             Intent intent = new Intent(this, CadastrarSalaActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }else if(v.getId() == btReservar.getId()){
             Intent intent = new Intent(this, ReservarActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }else if(v.getId() == btAprovar.getId()){
             Intent intent = new Intent(this, AprovarActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }
     }
 
@@ -93,5 +97,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             llProfessor.setVisibility(View.VISIBLE);
             llAdmin.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
     }
 }

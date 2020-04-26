@@ -129,4 +129,10 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
         realm.close();
         return true;
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
+    }
 }

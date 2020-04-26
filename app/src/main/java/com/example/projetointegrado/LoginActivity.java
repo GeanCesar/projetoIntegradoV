@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 UsuarioLogado.cargo = "Professor";
 
                 startActivityForResult(intent, Requests.LOGAR.getCod());
+                overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
             } else {
                 Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
             }
@@ -93,6 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             UsuarioLogado.usuarioLogado.setNome("Admin");
             UsuarioLogado.cargo = "Administrador";
             startActivityForResult(intent, Requests.LOGAR.getCod());
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }
     }
 
@@ -118,5 +120,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etEmailLogin.setText("");
         etSenhaLogin.setText("");
         etEmailLogin.requestFocus();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
     }
 }

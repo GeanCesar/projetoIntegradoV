@@ -128,4 +128,10 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
         }
         return true;
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+    }
 }

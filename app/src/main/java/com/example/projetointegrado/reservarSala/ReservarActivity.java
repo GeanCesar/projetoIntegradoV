@@ -195,4 +195,10 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
         Toast.makeText(this, "Reserva solicitada com sucesso!", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+    }
 }

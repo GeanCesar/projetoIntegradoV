@@ -24,13 +24,9 @@ import com.example.projetointegrado.modelos.StatusReserva;
 import com.example.projetointegrado.modelos.Usuario;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class AprovarActivity extends AppCompatActivity implements View.OnClickListener, DialogAprovar.BottomSheetListener {
 
@@ -153,5 +149,11 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onButtonClicker(String text, Reservas reservas) {
         resultadoAprovacao(text, reservas);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
     }
 }

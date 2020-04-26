@@ -1,11 +1,87 @@
 [
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-mdpi/ic_launcher.png"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_fragment_aprovar.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/fragment_aprovar.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/anim_from_right_out.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/anim/from_right_out.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_history.png.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_history.png"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_reservar.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_reservar.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_list_item.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/anim_from_fade_in.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/anim/from_fade_in.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_sala.png.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_sala.png"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_cadastrar.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_cadastrar.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_color_cursor.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/color_cursor.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_fundo_transparente_borda_azul.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/fundo_transparente_borda_azul.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_cadastrar_sala.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_cadastrar_sala.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_fundo_tela_login.jpg.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/fundo_tela_login.jpg"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_dashboard.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_dashboard.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/anim_from_fade_out.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/anim/from_fade_out.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_list_item_aprovar.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/list_item_aprovar.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_rounded_button_padrao.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/rounded_button_padrao.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
@@ -24,20 +100,8 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/rounded_button_secundario.xml"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_history.png.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_history.png"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_user.png.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_user.png"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_list_item.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/list_item.xml"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_reservar.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_reservar.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
@@ -52,16 +116,16 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/anim_from_right_in.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/anim/from_right_in.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/anim_from_left_out.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/anim/from_left_out.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_grandient_fundo_login.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/grandient_fundo_login.xml"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_sala.png.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_sala.png"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
@@ -80,24 +144,12 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/linha_bottom_azul.xml"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_cadastrar.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_cadastrar.xml"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_aprovar.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_aprovar.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_rounded_button_cancel.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/rounded_button_cancel.xml"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_color_cursor.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/color_cursor.xml"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_sair.png.flat",
@@ -108,32 +160,20 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_calendar.png"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_fundo_transparente_borda_azul.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/fundo_transparente_borda_azul.xml"
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/anim_from_left_in.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/anim/from_left_in.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_list_item_reservar.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/list_item_reservar.xml"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_launcher.png"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_fundo_tela_login.jpg.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/fundo_tela_login.jpg"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_login.xml"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_cadastrar_sala.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_cadastrar_sala.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_reservas.xml.flat",
@@ -152,23 +192,7 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/confirm.png"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_dashboard.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_dashboard.xml"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_list_item_aprovar.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/list_item_aprovar.xml"
-    },
-    {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_rounded_button_padrao.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/rounded_button_padrao.xml"
     }
 ]

@@ -35,10 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void chamaLogin(){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
     }
 
     private void chamaCadastrar(){
         Intent intent = new Intent(this, CadastrarActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
     }
 }
