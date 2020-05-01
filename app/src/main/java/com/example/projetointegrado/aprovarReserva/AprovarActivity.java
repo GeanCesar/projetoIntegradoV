@@ -3,6 +3,7 @@ package com.example.projetointegrado.aprovarReserva;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
+import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewAprovar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
@@ -30,6 +32,7 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
     TextView tvUsuario;
     TextView tvCargo;
+    LinearLayout llNenhuma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,15 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
         mRecyclerView = findViewById(R.id.rv_aprovar);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        llNenhuma = (LinearLayout) findViewById(R.id.llNenhumAprovar);
+
         atualizaListView();
 
         if(listarReservas().size() <= 4){
             mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
+
+
 
     }
 
@@ -106,8 +113,16 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
     public void resultadoAprovacao(String resultado, Reservas reservas){
         if(resultado.equalsIgnoreCase("Aprovado")){
             insereNoBanco(true, reservas);
+            String mensagem;
+            mensagem = "Olá, " + reservas.getUsuario().getNome() +"\nO administrador analisou seu pedido da reserva "  + (reservas.getSala().isLaboratorio() ? "do laboratório: Nº " : "da sala: Nº " ) + reservas.getSala().getnSala() + " no dia " + Uteis.converteDataHora(reservas.getData()) + ", e aprovou sua solicitação."
+                        + "\nParabéns, agora basta utilizá-la no dia solicitado";
+            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reseva", mensagem, this);
         }else if(resultado.equalsIgnoreCase("Recusado")){
             insereNoBanco(false, reservas);
+            String mensagem;
+            mensagem = "Olá, " + reservas.getUsuario().getNome() +"\nO administrador analisou seu pedido da reserva " + (reservas.getSala().isLaboratorio() ? "do laboratório: Nº " : "da sala: Nº " ) + reservas.getSala().getnSala() + " no dia " + Uteis.converteDataHora(reservas.getData()) + ", e não encontrou disponibilidade no dia, hora e local solicitado."
+                    + "\nTente uma outra sala ou um outro dia.";
+            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reseva", mensagem, this);
         }else{
             return;
         }
@@ -149,6 +164,12 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
     private void atualizaListView(){
         myAdapter = new AdapterRecyclerView(this, listarReservas(), getSupportFragmentManager());
         mRecyclerView.setAdapter(myAdapter);
+
+        if(listarReservas().size() == 0){
+            llNenhuma.setVisibility(View.VISIBLE);
+        }else{
+            llNenhuma.setVisibility(View.GONE);
+        }
     }
 
     @Override

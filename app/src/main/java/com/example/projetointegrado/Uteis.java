@@ -1,5 +1,7 @@
 package com.example.projetointegrado;
 
+import android.content.Context;
+
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,6 +38,16 @@ public class Uteis {
         }catch (Exception e){
             return "";
         }
+    }
+
+    public static void enviarEmail(String email, String assunto, String mensagem, Context context){
+
+        //Creating SendMail object
+        Mail sm = new Mail(context, email, assunto, mensagem);
+
+        //Executing sendmail to send email
+        sm.execute();
+
     }
 
 
