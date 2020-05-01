@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewAprovar;
-import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
@@ -31,8 +30,6 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
     TextView tvUsuario;
     TextView tvCargo;
-
-    public ValoresRetornados valores = new ValoresRetornados();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

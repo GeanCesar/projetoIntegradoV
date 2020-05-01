@@ -188,12 +188,13 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:clickable="false">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="154dp"
-                                    android:clickable="true"
+                                    android:clickable="false"
                                     android:padding="40dp"
                                     android:scaleType="centerInside"
                                     android:src="@drawable/ic_history" />
@@ -202,6 +203,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="25dp"
                                     android:layout_alignParentBottom="true"
+                                    android:clickable="false"
                                     android:text="Histórico"
                                     android:textAlignment="center"
                                     android:textColor="@color/branco"

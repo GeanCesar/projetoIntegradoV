@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Projeto Integrado V</string>
+
+    <array name="itens_filtro_historico">
+        <item>Todos</item>
+        <item>Pendente</item>
+        <item>Aprovado</item>
+        <item>Recusado</item>
+    </array>
 </resources>

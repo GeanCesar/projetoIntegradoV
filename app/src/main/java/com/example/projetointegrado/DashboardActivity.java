@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
+import com.example.projetointegrado.historico.HistoricoActivity;
 import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.example.projetointegrado.reservas.ReservasActivity;
 
@@ -25,6 +26,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout btSala;
     RelativeLayout btReservar;
     RelativeLayout btAprovar;
+    RelativeLayout btHistorico;
     LinearLayout llAdmin;
     LinearLayout llProfessor;
 
@@ -60,6 +62,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         btReservar = (RelativeLayout)findViewById(R.id.bt_Reservar);
         btReservar.setOnClickListener(this);
 
+        btHistorico = (RelativeLayout)findViewById(R.id.bt_Historico);
+        btHistorico.setOnClickListener(this);
+
         validaMenu();
     }
 
@@ -84,6 +89,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }else if(v.getId() == btAprovar.getId()){
             Intent intent = new Intent(this, AprovarActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+        }else if(v.getId() == btHistorico.getId()){
+            Intent intent = new Intent(this, HistoricoActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }
