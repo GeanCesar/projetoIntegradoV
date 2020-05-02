@@ -116,13 +116,13 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
             String mensagem;
             mensagem = "Olá, " + reservas.getUsuario().getNome() +"\nO administrador analisou seu pedido da reserva "  + (reservas.getSala().isLaboratorio() ? "do laboratório: Nº " : "da sala: Nº " ) + reservas.getSala().getnSala() + " no dia " + Uteis.converteDataHora(reservas.getData()) + ", e aprovou sua solicitação."
                         + "\nParabéns, agora basta utilizá-la no dia solicitado";
-            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reseva", mensagem, this);
+            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reserva", mensagem, this);
         }else if(resultado.equalsIgnoreCase("Recusado")){
             insereNoBanco(false, reservas);
             String mensagem;
             mensagem = "Olá, " + reservas.getUsuario().getNome() +"\nO administrador analisou seu pedido da reserva " + (reservas.getSala().isLaboratorio() ? "do laboratório: Nº " : "da sala: Nº " ) + reservas.getSala().getnSala() + " no dia " + Uteis.converteDataHora(reservas.getData()) + ", e não encontrou disponibilidade no dia, hora e local solicitado."
                     + "\nTente uma outra sala ou um outro dia.";
-            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reseva", mensagem, this);
+            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reserva", mensagem, this);
         }else{
             return;
         }

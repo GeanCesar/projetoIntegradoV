@@ -20,7 +20,6 @@ public class Mail extends AsyncTask<Void,Void,Void> {
 
     //Declaring Variables
     private Context context;
-    private Session session;
 
     //Information to send email
     private String email;
@@ -61,7 +60,6 @@ public class Mail extends AsyncTask<Void,Void,Void> {
         Properties props = new Properties();
 
         //Configuring properties for gmail
-        //If you are not using gmail you may need to change the values
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
