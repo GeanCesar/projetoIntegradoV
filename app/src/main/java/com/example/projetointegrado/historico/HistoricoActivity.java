@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
 
     RecyclerView mRecyclerView;
     AdapterRecyclerView myAdapter;
+    LinearLayout llNenhum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
         tvCargo.setText(cargo);
 
         spFiltro = (Spinner) findViewById(R.id.sp_FiltroHist);
+
+        llNenhum = (LinearLayout) findViewById(R.id.llNenhumHistorico);
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.itens_filtro_historico, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -71,6 +75,11 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
     private void atualizaLista(int filtro){
         myAdapter = new AdapterRecyclerView(this, listarReservas(filtro), getSupportFragmentManager());
         mRecyclerView.setAdapter(myAdapter);
+        if(listarReservas(filtro).size() > 0){
+            llNenhum.setVisibility(View.GONE);
+        }else{
+            llNenhum.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -92,21 +101,21 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
 
         //Busca todos os usuarios cadastrados
         if(codigo == FiltroHistorico.TODOS.getCodigo()){
-            reservas = realm.where(Reservas.class).equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome())
+            reservas = realm.where(Reservas.class).equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
                     .findAllSorted(fieldNames, sort);
         }else if(codigo == FiltroHistorico.PENDENTE.getCodigo()){
            reservas = realm.where(Reservas.class)
-                    .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome())
+                    .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
                     .equalTo("status", StatusReserva.PENDENTE.getCodigo())
                     .findAllSorted(fieldNames, sort);
         }else if(codigo == FiltroHistorico.APROVADO.getCodigo()) {
             reservas = realm.where(Reservas.class)
-                    .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome())
+                    .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
                     .equalTo("status", StatusReserva.APROVADO.getCodigo())
                     .findAllSorted(fieldNames, sort);
         }else if(codigo == FiltroHistorico.RECUSADO.getCodigo()) {
             reservas = realm.where(Reservas.class)
-                    .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome())
+                    .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
                     .equalTo("status", StatusReserva.RECUSADO.getCodigo())
                     .findAllSorted(fieldNames, sort);
         }

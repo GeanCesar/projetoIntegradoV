@@ -82,10 +82,11 @@
         <EditText
             android:id="@+id/etNSala"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/branco"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_textview_fundo"
             android:hint="Ex. 10"
             android:inputType="none|numberSigned"
+            android:paddingStart="8dp"
             android:textColor="@color/branco"
             android:textColorHint="@color/cinza"
             android:textCursorDrawable="@drawable/color_cursor"
@@ -98,13 +99,11 @@
             android:layout_marginTop="20dp"
             android:checked="false"
             android:text="Laboratório"
+            android:theme="@style/SCBSwitch"
             android:textColor="@color/azul_projeto"
-            android:textColorHighlight="@color/azul_projeto"
-            android:textColorLink="@color/azul_projeto"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:thumbTint="@color/azul_projeto"
-            android:trackTint="#FFFFFF" />
+             />
 
         <Switch
             android:id="@+id/sw_Projetor"
@@ -113,13 +112,10 @@
             android:layout_marginTop="20dp"
             android:checked="false"
             android:text="Projetor"
+            android:theme="@style/SCBSwitch"
             android:textColor="@color/azul_projeto"
-            android:textColorHighlight="@color/azul_projeto"
-            android:textColorLink="@color/azul_projeto"
             android:textSize="18dp"
-            android:textStyle="bold"
-            android:thumbTint="@color/azul_projeto"
-            android:trackTint="#FFFFFF" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btCadastrarSala"

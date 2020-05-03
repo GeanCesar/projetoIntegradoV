@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -42,6 +43,8 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
     TextView tvUsuario;
     TextView tvCargo;
 
+    LinearLayout llNenhum;
+
     public ValoresRetornados valores = new ValoresRetornados();
 
     @Override
@@ -58,11 +61,19 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
         tvCargo = (TextView) findViewById(R.id.tv_cargo_reservar);
         tvCargo.setText(cargo);
 
+        llNenhum = (LinearLayout) findViewById(R.id.llNenhumReservar);
+
         mRecyclerView = findViewById(R.id.rv_Reservar);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         myAdapter = new AdapterRecyclerView(this, listarSalas(), getSupportFragmentManager());
         mRecyclerView.setAdapter(myAdapter);
+
+        if(listarSalas().size() == 0){
+            llNenhum.setVisibility(View.VISIBLE);
+        }else{
+            llNenhum.setVisibility(View.GONE);
+        }
 
         if(listarSalas().size() <= 4){
             mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;

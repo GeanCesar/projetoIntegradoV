@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projetointegrado"
     android:targetSandboxVersion="2"
-    android:versionCode="7"
-    android:versionName="4.0" >
+    android:versionCode="10"
+    android:versionName="5.3" >
 
     <uses-sdk
         android:minSdkVersion="23"
         android:targetSdkVersion="29" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
         <activity android:name="com.example.projetointegrado.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +40,7 @@
         <activity android:name="com.example.projetointegrado.cadastraSala.CadastrarSalaActivity" />
         <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" />
         <activity android:name="com.example.projetointegrado.aprovarReserva.AprovarActivity" />
+        <activity android:name="com.example.projetointegrado.historico.HistoricoActivity" />
     </application>
 
 </manifest>

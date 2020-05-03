@@ -2,6 +2,7 @@ package com.example.projetointegrado.reservas;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
     TextView tvUsuario;
     TextView tvCargo;
 
+    LinearLayout llNenhum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +44,24 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
         tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
         tvCargo.setText(UsuarioLogado.cargo);
 
+        llNenhum = (LinearLayout) findViewById(R.id.llNenhumReservas);
+
         mRecyclerView = findViewById(R.id.rv_Reservas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        listaReservas();
+
+    }
+
+    private void listaReservas(){
         myAdapter = new AdapterRecylcerView(this, listarReservas());
         mRecyclerView.setAdapter(myAdapter);
+
+        if(listarReservas().size() > 0){
+            llNenhum.setVisibility(View.GONE);
+        }else{
+            llNenhum.setVisibility(View.VISIBLE);
+        }
     }
 
     private ArrayList<ModeloRecyclerView> listarReservas(){
@@ -61,7 +77,7 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
 
         //Busca todos as reservas confirmadas
         RealmResults<Reservas> reservas = realm.where(Reservas.class)
-                .equalTo("usuario.nome", UsuarioLogado.usuarioLogado.getNome())
+                .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
                 .equalTo("status", StatusReserva.APROVADO.getCodigo()).findAll()
                 .sort("sala.laboratorio", Sort.DESCENDING);
 

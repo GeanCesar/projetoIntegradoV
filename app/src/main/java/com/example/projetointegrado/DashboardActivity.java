@@ -1,6 +1,7 @@
 package com.example.projetointegrado;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.aprovarReserva.AprovarActivity;
@@ -71,9 +73,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if(v.getId() == ivSair.getId()){
-            UsuarioLogado.usuarioLogado = null;
-            UsuarioLogado.cargo = null;
-            setResult(Activity.RESULT_OK);
             finish();
         }else if(v.getId() == btReservas.getId()){
             Intent intent = new Intent(this, ReservasActivity.class);
@@ -108,9 +107,25 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private void deslogar(){
+        UsuarioLogado.usuarioLogado = null;
+        UsuarioLogado.cargo = null;
+        setResult(Activity.RESULT_OK);
+        super.finish();
+    }
+
     @Override
     public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this)
+                .setTitle("Sair")
+                .setMessage("Tem certeza que deseja sair?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        deslogar();
+                    }})
+                .setNegativeButton("Não", null);
+
+        dialog.create().show();
     }
 }

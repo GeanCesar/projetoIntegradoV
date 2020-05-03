@@ -6,4 +6,13 @@
         <item name="colorAccent">@color/azul_projeto</item>
     </style>
 
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/azul_projeto</item>
+
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+
+        <item name="android:colorForeground">@color/branco</item>
+    </style>
+
 </resources>

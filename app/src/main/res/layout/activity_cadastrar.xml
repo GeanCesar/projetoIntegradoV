@@ -52,11 +52,12 @@
             <EditText
                 android:id="@+id/etNomeCadastrar"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/branco"
+                android:layout_height="45dp"
+                android:background="@drawable/rounded_textview_fundo"
                 android:ems="10"
                 android:hint="Ex. Maria"
                 android:inputType="text"
+                android:paddingStart="8dp"
                 android:textColor="@color/branco"
                 android:textColorHint="@color/cinza"
                 android:textCursorDrawable="@drawable/color_cursor"
@@ -75,15 +76,15 @@
                 tools:text="EMAIL" />
 
 
-
             <EditText
                 android:id="@+id/etEmailCadastrar"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/branco"
+                android:layout_height="45dp"
+                android:background="@drawable/rounded_textview_fundo"
                 android:ems="10"
                 android:hint="email@email.com"
                 android:inputType="textEmailAddress"
+                android:paddingStart="8dp"
                 android:textColor="@color/branco"
                 android:textColorHint="@color/cinza"
                 android:textCursorDrawable="@drawable/color_cursor"
@@ -103,11 +104,12 @@
             <EditText
                 android:id="@+id/etSenhaCadastro"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/branco"
+                android:layout_height="45dp"
+                android:background="@drawable/rounded_textview_fundo"
                 android:ems="10"
                 android:hint="*************"
                 android:inputType="textPassword"
+                android:paddingStart="8dp"
                 android:textColor="@color/branco"
                 android:textColorHint="@color/cinza"
                 android:textCursorDrawable="@drawable/color_cursor"
@@ -127,11 +129,12 @@
             <EditText
                 android:id="@+id/etSenha2Cadastro"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/branco"
+                android:layout_height="45dp"
+                android:background="@drawable/rounded_textview_fundo"
                 android:ems="10"
                 android:hint="*************"
                 android:inputType="textPassword"
+                android:paddingStart="8dp"
                 android:textColor="@color/branco"
                 android:textColorHint="@color/cinza"
                 android:textCursorDrawable="@drawable/color_cursor"

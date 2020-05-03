@@ -36,8 +36,8 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
         tv_usuario_salas = (TextView) findViewById(R.id.tv_usuario_salas);
         tv_cargo_salas = (TextView) findViewById(R.id.tv_cargo_salas);
 
-        tv_usuario_salas.setText(UsuarioLogado.usuarioLogado.getNome());
-        tv_cargo_salas.setText(UsuarioLogado.cargo);
+        //tv_usuario_salas.setText(UsuarioLogado.usuarioLogado.getNome());
+        //tv_cargo_salas.setText(UsuarioLogado.cargo);
 
         etSala = (EditText) findViewById(R.id.etNSala);
 

@@ -84,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/fundo_transparente_borda_azul"
                     app:layout_constrainedHeight="true"
                     app:layout_constraintHeight_max="300dp">
@@ -118,6 +119,29 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/llNenhumReservar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="50dp"
+                        app:srcCompat="@drawable/exclamation" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nenhuma sala cadastrada"
+                        android:textAlignment="center"
+                        android:textColor="@color/branco"
+                        android:visibility="visible" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
