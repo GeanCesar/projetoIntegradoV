@@ -116,7 +116,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void finish() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this)
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.alertaAzul)
                 .setTitle("Sair")
                 .setMessage("Tem certeza que deseja sair?")
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {

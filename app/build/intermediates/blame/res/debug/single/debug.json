@@ -164,6 +164,10 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/rounded_button_cancel.xml"
     },
     {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_botao_dash.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/botao_dash.xml"
+    },
+    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_spinner_dropdown_item.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/spinner_dropdown_item.xml"
     },

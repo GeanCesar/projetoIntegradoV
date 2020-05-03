@@ -97,9 +97,8 @@
                             android:layout_height="180dp"
                             android:layout_margin="10dp"
                             android:layout_weight="0.65"
-                            android:background="@color/cor_botao_dash"
+                            android:background="@drawable/botao_dash"
                             android:clickable="true"
-                            android:elevation="@android:dimen/app_icon_size"
                             android:paddingBottom="15dp">
 
                             <RelativeLayout
@@ -135,9 +134,8 @@
                             android:layout_height="180dp"
                             android:layout_margin="10dp"
                             android:layout_weight="0.65"
-                            android:background="@color/cor_botao_dash"
+                            android:background="@drawable/botao_dash"
                             android:clickable="true"
-                            android:elevation="@android:dimen/app_icon_size"
                             android:paddingBottom="15dp">
 
                             <RelativeLayout
@@ -181,9 +179,8 @@
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:layout_weight="0.65"
-                            android:background="@color/cor_botao_dash"
+                            android:background="@drawable/botao_dash"
                             android:clickable="true"
-                            android:elevation="@android:dimen/app_icon_size"
                             android:paddingBottom="15dp">
 
                             <RelativeLayout
@@ -244,9 +241,8 @@
                             android:layout_height="180dp"
                             android:layout_margin="10dp"
                             android:layout_weight="0.65"
-                            android:background="@color/cor_botao_dash"
+                            android:background="@drawable/botao_dash"
                             android:clickable="true"
-                            android:elevation="@android:dimen/app_icon_size"
                             android:paddingBottom="15dp">
 
                             <RelativeLayout
@@ -282,9 +278,8 @@
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:layout_weight="0.65"
-                            android:background="@color/cor_botao_dash"
+                            android:background="@drawable/botao_dash"
                             android:clickable="true"
-                            android:elevation="@android:dimen/app_icon_size"
                             android:paddingBottom="15dp">
 
                             <RelativeLayout

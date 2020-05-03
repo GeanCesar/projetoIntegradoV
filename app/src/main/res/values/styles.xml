@@ -15,4 +15,10 @@
         <item name="android:colorForeground">@color/branco</item>
     </style>
 
+    <style name="alertaAzul" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">@color/azul_projeto</item>
+        <item name="android:background">@color/cinzaEscuroA</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
 </resources>

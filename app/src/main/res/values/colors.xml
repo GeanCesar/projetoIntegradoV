@@ -9,9 +9,12 @@
     <color name="branco">#FFFFFF</color>
     <color name="cinza">#acacac</color>
     <color name="cor_botao_dash">#050e18</color>
+    <color name="borda_botao_dash">#05131f</color>
     <color name="azul_projeto">#00ccff</color>
     <color name="verde">#5DB75D</color>
     <color name="vermelho">#D9544F</color>
+    <color name="cinzaEscuro">#12181c</color>
     <color name="cinzaEscuroA">#1A2227</color>
     <color name="cinzaEscuroB">#232b30</color>
+
 </resources>
