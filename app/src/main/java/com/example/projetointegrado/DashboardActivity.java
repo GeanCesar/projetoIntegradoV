@@ -112,6 +112,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         UsuarioLogado.cargo = null;
         setResult(Activity.RESULT_OK);
         super.finish();
+        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
     }
 
     @Override
