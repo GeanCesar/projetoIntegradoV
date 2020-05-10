@@ -56,12 +56,12 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/ic_launcher.png"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_cadastrar_sala.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_cadastrar_sala.xml"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/drawable_fundo_tela_login.jpg.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/fundo_tela_login.jpg"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_cadastrar_sala.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_cadastrar_sala.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_dashboard.xml.flat",

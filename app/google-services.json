@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "963392736888",
+    "firebase_url": "https://projeto-integrado-47909.firebaseio.com",
+    "project_id": "projeto-integrado-47909",
+    "storage_bucket": "projeto-integrado-47909.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963392736888:android:3be27e07cbe2aebf9ca78d",
+        "android_client_info": {
+          "package_name": "com.example.projetointegrado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963392736888-9sgoif23e413oktasoe1bi7dt8nni02s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Z_FHgDxgcRBzvNs-tt4C0U-ZVdv-8fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963392736888-9sgoif23e413oktasoe1bi7dt8nni02s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

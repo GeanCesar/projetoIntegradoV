@@ -8,6 +8,13 @@ import io.realm.annotations.Required;
 
 public class Usuario extends RealmObject {
 
+    public Usuario(String email, String nome){
+        this.email = email;
+        this.nome = nome;
+    }
+
+    public Usuario(){}
+
     @PrimaryKey
     @Required
     private String email;

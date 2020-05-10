@@ -4,7 +4,7 @@
             "outputFile": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
-                    "source": "/home/gean/.gradle/caches/transforms-2/files-2.1/8e486cdd5d92f5314a3897eadf755392/appcompat-1.1.0/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "/home/gean/.gradle/caches/transforms-2/files-2.1/bbc6b7d96691cb4b89cd82b6731d6625/appcompat-1.1.0/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/gean/.gradle/caches/transforms-2/files-2.1/f12aaa88de9b1902090d1ad0443fa660/core-1.1.0/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "/home/gean/.gradle/caches/transforms-2/files-2.1/310aceff0dc95914c74dbdf85e10e174/core-1.1.0/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

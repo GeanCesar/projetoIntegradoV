@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -9,8 +11,8 @@ android {
         applicationId "com.example.projetointegrado"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 11
-        versionName "5.4"
+        versionCode 12
+        versionName "6.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,4 +41,8 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:26.1.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
+
 }

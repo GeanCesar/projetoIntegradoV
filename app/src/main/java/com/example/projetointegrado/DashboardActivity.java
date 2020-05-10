@@ -10,14 +10,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
 import com.example.projetointegrado.historico.HistoricoActivity;
+import com.example.projetointegrado.modelos.User;
+import com.example.projetointegrado.modelos.Usuario;
 import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.example.projetointegrado.reservas.ReservasActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,22 +41,23 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     LinearLayout llAdmin;
     LinearLayout llProfessor;
 
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        String nome = UsuarioLogado.usuarioLogado.getNome();
-        String cargo = UsuarioLogado.cargo;
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseUsuario = FirebaseDatabase.getInstance().getReference("Users");
 
         llAdmin = (LinearLayout) findViewById(R.id.ll_Admin);
         llProfessor = (LinearLayout) findViewById(R.id.ll_Professor);
 
         tvUsuario = (TextView) findViewById(R.id.tv_usuario);
-        tvUsuario.setText(nome);
 
         tvCargo = (TextView) findViewById(R.id.tv_cargo);
-        tvCargo.setText(cargo);
 
         ivSair = (ImageView) findViewById(R.id.iv_sair);
         ivSair.setOnClickListener(this);
@@ -67,6 +77,30 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         btHistorico = (RelativeLayout)findViewById(R.id.bt_Historico);
         btHistorico.setOnClickListener(this);
 
+
+        databaseUsuario.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()){
+                    User usuario = usuarioSnapshot.getValue(User.class);
+
+                    if(usuario.getEmail().equalsIgnoreCase(firebaseAuth.getCurrentUser().getEmail())){
+                        UsuarioLogado.usuarioLogado.setNome(usuario.getNome());
+                        UsuarioLogado.cargo = usuario.getCargo();
+                        tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
+                        tvCargo.setText(UsuarioLogado.cargo);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
+        tvCargo.setText(UsuarioLogado.cargo);
         validaMenu();
     }
 
@@ -111,6 +145,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         UsuarioLogado.usuarioLogado = null;
         UsuarioLogado.cargo = null;
         setResult(Activity.RESULT_OK);
+        firebaseAuth.signOut();
         super.finish();
         overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
     }

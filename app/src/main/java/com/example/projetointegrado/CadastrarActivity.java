@@ -1,14 +1,24 @@
 package com.example.projetointegrado;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.projetointegrado.modelos.User;
 import com.example.projetointegrado.modelos.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -21,6 +31,11 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
     EditText etEmailCadastro;
     EditText etSenhaCadastro;
     EditText etSenha2Cadastro;
+
+    private ProgressDialog progressDialog;
+
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +50,9 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
         etSenha2Cadastro = (EditText) findViewById(R.id.etSenha2Cadastro);
 
         btCadastrar.setOnClickListener(this);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
     }
 
     @Override
@@ -81,9 +99,41 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
         return true;
     }
 
-    private void chamaCadastro(String nome, String email, String senha){
+    private void chamaCadastro(final String nome, final String email, String senha){
         if(verificaEmail(email)) {
-            // Instancia do objeto e inserir valores
+
+            progressDialog = ProgressDialog.show(this,"Cadastrando usuário","Aguarde...",false,false);
+
+            firebaseAuth.createUserWithEmailAndPassword(email, Uteis.MD5(senha)).addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
+                    if(task.isSuccessful()){
+
+                        User user = new User(email, nome, "Professor");
+                        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+                        databaseReference.child(usuario.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    Toast.makeText(CadastrarActivity.this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    progressDialog.dismiss();
+                                }
+                                else{
+                                    Toast.makeText(CadastrarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            }
+                        });
+                    }else{
+                        Toast.makeText(CadastrarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+
+                }
+            });
+            /*// Instancia do objeto e inserir valores
             Usuario usu = new Usuario();
             usu.setEmail(email);
             usu.setSenha(senha);
@@ -102,10 +152,10 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
             banco.copyToRealm(usu);
             banco.commitTransaction();
 
-            banco.close();
+            banco.close();*/
 
-            Toast.makeText(this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-            finish();
+
+
         }else{
             Toast.makeText(this, "Email já cadastrado", Toast.LENGTH_SHORT).show();
             return;
@@ -113,7 +163,7 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
     }
 
     private boolean verificaEmail(String email){
-        Realm.init(getApplicationContext());
+        /*Realm.init(getApplicationContext());
 
         RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
@@ -126,7 +176,7 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
             realm.close();
             return false;
         }
-        realm.close();
+        realm.close();*/
         return true;
     }
 
