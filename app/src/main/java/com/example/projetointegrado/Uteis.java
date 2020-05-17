@@ -50,6 +50,12 @@ public class Uteis {
 
     }
 
+    public static String gerarChave(){
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssSSS");
+        return ft.format(dNow);
+    }
+
 
 
 }

@@ -2,9 +2,11 @@ package com.example.projetointegrado.reservas;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +15,17 @@ import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.ModeloRecyclerView;
+import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Reservas;
+import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
+import com.example.projetointegrado.reservarSala.AdapterRecyclerView;
+import com.example.projetointegrado.reservarSala.ReservarActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -32,6 +43,9 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
     TextView tvCargo;
 
     LinearLayout llNenhum;
+    ArrayList<ModeloRecyclerView> lista = new ArrayList<>();
+
+    DatabaseReference databaseReservas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,51 +63,59 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView = findViewById(R.id.rv_Reservas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listaReservas();
+        databaseReservas = FirebaseDatabase.getInstance().getReference("Reservas");
+        databaseReservas.child("sala").orderByChild("laboratorio");
+
+
+
+
+
+        databaseReservas.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                lista = new ArrayList();
+
+                for(DataSnapshot s : dataSnapshot.getChildren()){
+
+                    Reservas reserva = s.getValue(Reservas.class);
+                    if(reserva.getStatus() == StatusReserva.APROVADO.getCodigo() && reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.getUsuarioLogado().getEmail())){
+                        ModeloRecyclerView modelo = new ModeloRecyclerView();
+                        modelo.setHeader((reserva.getSala().isLaboratorio() ? "Laboratório " : "Sala ") +  reserva.getSala().getnSala() + "");
+                        modelo.setContent(Uteis.converteDataHora(reserva.getData()));
+                        lista.add(modelo);
+                    }
+
+                }
+
+                if(lista.size() == 0){
+                    llNenhum.setVisibility(View.VISIBLE);
+                }else{
+                    llNenhum.setVisibility(View.GONE);
+                }
+
+                if(lista.size() <= 4){
+                    mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
+
+                myAdapter = new AdapterRecylcerView(ReservasActivity.this, lista);
+                mRecyclerView.setAdapter(myAdapter);
+
+                if(lista.size() > 0){
+                    llNenhum.setVisibility(View.GONE);
+                }else{
+                    llNenhum.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
 
     }
 
-    private void listaReservas(){
-        myAdapter = new AdapterRecylcerView(this, listarReservas());
-        mRecyclerView.setAdapter(myAdapter);
-
-        if(listarReservas().size() > 0){
-            llNenhum.setVisibility(View.GONE);
-        }else{
-            llNenhum.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private ArrayList<ModeloRecyclerView> listarReservas(){
-
-        ArrayList<ModeloRecyclerView> lista = new ArrayList<>();
-
-        Realm.init(getApplicationContext());
-
-        // Cria a configuração do realmw
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm realm = Realm.getInstance(config);
-
-        //Busca todos as reservas confirmadas
-        RealmResults<Reservas> reservas = realm.where(Reservas.class)
-                .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
-                .equalTo("status", StatusReserva.APROVADO.getCodigo()).findAll()
-                .sort("sala.laboratorio", Sort.DESCENDING);
-
-
-        for (Reservas r : reservas){
-            ModeloRecyclerView modelo = new ModeloRecyclerView();
-            modelo.setHeader((r.getSala().isLaboratorio() ? "Laboratório " : "Sala ") +  r.getSala().getnSala() + "");
-            modelo.setContent(Uteis.converteDataHora(r.getData()));
-
-            lista.add(modelo);
-        }
-        realm.close();
-
-        return lista;
-
-    }
 
     @Override
     public void onClick(View v) {

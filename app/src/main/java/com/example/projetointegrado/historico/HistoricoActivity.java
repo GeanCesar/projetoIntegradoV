@@ -100,7 +100,7 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
         RealmResults<Reservas> reservas = null;
 
         //Busca todos os usuarios cadastrados
-        if(codigo == FiltroHistorico.TODOS.getCodigo()){
+        /*if(codigo == FiltroHistorico.TODOS.getCodigo()){
             reservas = realm.where(Reservas.class).equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
                     .findAllSorted(fieldNames, sort);
         }else if(codigo == FiltroHistorico.PENDENTE.getCodigo()){
@@ -142,7 +142,7 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
 
             lista.add(modelo);
         }
-        realm.close();
+        realm.close();*/
 
         return lista;
     }

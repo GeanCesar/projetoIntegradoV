@@ -1,8 +1,14 @@
 package com.example.projetointegrado.modelos;
 
-import io.realm.RealmObject;
+public class Sala {
 
-public class Sala extends RealmObject {
+    public Sala(){}
+
+    public Sala(int nSala, boolean laboratorio, boolean projetor){
+        this.nSala = nSala;
+        this.laboratorio = laboratorio;
+        this.projetor = projetor;
+    }
 
     private int nSala;
 

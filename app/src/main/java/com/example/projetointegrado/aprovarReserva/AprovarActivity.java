@@ -5,8 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,11 +19,13 @@ import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
 import com.example.projetointegrado.modelos.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 public class AprovarActivity extends AppCompatActivity implements View.OnClickListener, DialogAprovar.BottomSheetListener {
 
@@ -33,6 +35,10 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
     TextView tvUsuario;
     TextView tvCargo;
     LinearLayout llNenhuma;
+
+    DatabaseReference databaseReservas;
+
+    ArrayList<ModeloRecyclerViewAprovar> lista = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +59,58 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
         llNenhuma = (LinearLayout) findViewById(R.id.llNenhumAprovar);
 
+
+        databaseReservas = FirebaseDatabase.getInstance().getReference("Reservas");
+        databaseReservas.orderByChild("laboratorio/nSala");
+
         atualizaListView();
 
-        if(listarReservas().size() <= 4){
+        if(lista.size() <= 4){
             mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
+
+
+        databaseReservas.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                lista = new ArrayList();
+
+                for(DataSnapshot s : dataSnapshot.getChildren()){
+
+                    Reservas reserva = s.getValue(Reservas.class);
+                    if(reserva.getStatus() == StatusReserva.PENDENTE.getCodigo()){
+                        ModeloRecyclerViewAprovar modelo = new ModeloRecyclerViewAprovar();
+                        modelo.setReserva(reserva);
+                        lista.add(modelo);
+                    }
+
+                }
+
+                if(lista.size() == 0){
+                    llNenhuma.setVisibility(View.VISIBLE);
+                }else{
+                    llNenhuma.setVisibility(View.GONE);
+                }
+
+                if(lista.size() <= 4){
+                    mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
+
+                myAdapter = new AdapterRecyclerView(AprovarActivity.this, lista, getSupportFragmentManager());
+                mRecyclerView.setAdapter(myAdapter);
+
+                if(lista.size() > 0){
+                    llNenhuma.setVisibility(View.GONE);
+                }else{
+                    llNenhuma.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
 
 
 
@@ -68,47 +121,6 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private ArrayList<ModeloRecyclerViewAprovar> listarReservas(){
-
-        ArrayList<ModeloRecyclerViewAprovar> lista = new ArrayList<>();
-
-        Realm.init(getApplicationContext());
-
-        // Cria a configuração do realm
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm realm = Realm.getInstance(config);
-
-        //Busca todos os usuarios cadastrados
-        RealmResults<Reservas> reservas = realm.where(Reservas.class).equalTo("status", StatusReserva.PENDENTE.getCodigo())
-                .findAll();
-
-        for (Reservas s : reservas){
-
-            Sala sala = new Sala();
-            sala.setProjetor(s.getSala().isProjetor());
-            sala.setLaboratorio(s.getSala().isLaboratorio());
-            sala.setnSala(s.getSala().getnSala());
-
-            Usuario usuario = new Usuario();
-            usuario.setNome(s.getUsuario().getNome());
-            usuario.setEmail(s.getUsuario().getEmail());
-
-            Reservas r = new Reservas();
-            r.setStatus(s.getStatus());
-            r.setData(s.getData());
-            r.setSala(sala);
-            r.setUsuario(usuario);
-
-            ModeloRecyclerViewAprovar modelo = new ModeloRecyclerViewAprovar();
-            modelo.setReserva(r);
-
-            lista.add(modelo);
-        }
-        realm.close();
-
-        return lista;
-    }
 
     public void resultadoAprovacao(String resultado, Reservas reservas){
         if(resultado.equalsIgnoreCase("Aprovado")){
@@ -130,7 +142,8 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
     private void insereNoBanco(boolean aprovado, Reservas reserva){
 
-        Realm.init(getApplicationContext());
+
+        /*Realm.init(getApplicationContext());
 
         RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
@@ -158,14 +171,14 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
         else
             Toast.makeText(this, "Reserva recusada com sucesso!", Toast.LENGTH_SHORT).show();
 
-        atualizaListView();
+        atualizaListView();*/
     }
 
     private void atualizaListView(){
-        myAdapter = new AdapterRecyclerView(this, listarReservas(), getSupportFragmentManager());
+        myAdapter = new AdapterRecyclerView(this, lista, getSupportFragmentManager());
         mRecyclerView.setAdapter(myAdapter);
 
-        if(listarReservas().size() == 0){
+        if(lista.size() == 0){
             llNenhuma.setVisibility(View.VISIBLE);
         }else{
             llNenhuma.setVisibility(View.GONE);

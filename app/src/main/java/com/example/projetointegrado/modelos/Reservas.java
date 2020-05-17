@@ -5,23 +5,30 @@ import java.util.Date;
 import io.realm.RealmObject;
 import io.realm.annotations.Required;
 
-public class Reservas extends RealmObject {
+public class Reservas {
 
+    public Reservas(User usuario, Date data, Sala sala, int status){
+        this.data = data;
+        this.usuario = usuario;
+        this.sala = sala;
+        this.status = status;
+    }
 
-    private Usuario usuario;
+    public Reservas(){}
 
-    @Required
+    private User usuario;
+
     private Date data;
 
     private Sala sala;
 
     private int status;
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

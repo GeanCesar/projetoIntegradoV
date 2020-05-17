@@ -38,14 +38,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        UsuarioLogado.usuarioLogado = new Usuario();
+        UsuarioLogado.usuarioLogado = new User();
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseUsuario = FirebaseDatabase.getInstance().getReference("Users");
 
         if(firebaseAuth.getCurrentUser() != null){
             Intent intent = new Intent(this, DashboardActivity.class);
-            UsuarioLogado.usuarioLogado = new Usuario();
+            UsuarioLogado.usuarioLogado = new User();
+            UsuarioLogado.usuarioLogado.setEmail( firebaseAuth.getCurrentUser().getEmail() );
             UsuarioLogado.cargo = "Professor";
 
 

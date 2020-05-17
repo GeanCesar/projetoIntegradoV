@@ -58,8 +58,8 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if(v.getId() == btCadastrar.getId()){
-            String email = etEmailCadastro.getText().toString();
-            String nome = etNomeCadastro.getText().toString();
+            String email = etEmailCadastro.getText().toString().trim();
+            String nome = etNomeCadastro.getText().toString().trim();
             String senha = etSenhaCadastro.getText().toString();
             String senha2 = etSenha2Cadastro.getText().toString();
 
@@ -109,7 +109,7 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
                 public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
                     if(task.isSuccessful()){
 
-                        User user = new User(email, nome, "Professor");
+                        User user = new User(email, nome, nome.equalsIgnoreCase("Admin") ? "Administrador" : "Professor");
                         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
                         databaseReference.child(usuario.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

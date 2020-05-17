@@ -51,6 +51,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseUsuario = FirebaseDatabase.getInstance().getReference("Users");
+        databaseUsuario.equalTo(UsuarioLogado.usuarioLogado.getEmail(), "email");
 
         llAdmin = (LinearLayout) findViewById(R.id.ll_Admin);
         llProfessor = (LinearLayout) findViewById(R.id.ll_Professor);
@@ -78,6 +79,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         btHistorico.setOnClickListener(this);
 
 
+
         databaseUsuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -98,6 +100,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
             }
         });
+
+
 
         tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
         tvCargo.setText(UsuarioLogado.cargo);

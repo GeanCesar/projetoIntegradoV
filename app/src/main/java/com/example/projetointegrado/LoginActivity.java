@@ -54,8 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(firebaseAuth.getCurrentUser() != null){
             Intent intent = new Intent(this, DashboardActivity.class);
-            UsuarioLogado.usuarioLogado = new Usuario();
-            UsuarioLogado.cargo = "Professor";
+            UsuarioLogado.usuarioLogado = new User();
+            UsuarioLogado.usuarioLogado.setEmail(firebaseAuth.getCurrentUser().getEmail());
+            UsuarioLogado.cargo = "Administrador";
 
 
             startActivityForResult(intent, Requests.LOGAR.getCod());
@@ -67,8 +68,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if(v.getId() == btLogin.getId()){
             if(validaCampos()) {
-                String email = etEmailLogin.getText().toString();
-                String senha = etSenhaLogin.getText().toString();
+                String email = etEmailLogin.getText().toString().trim();
+                String senha = etSenhaLogin.getText().toString().trim();
                 fazLogin(email, senha);
             }
         }
@@ -94,12 +95,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                        UsuarioLogado.usuarioLogado = new Usuario();
+
 
                         databaseUsuario.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                UsuarioLogado.usuarioLogado = new User();
+
                                 for(DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()){
                                     User usuario = usuarioSnapshot.getValue(User.class);
 
@@ -109,53 +112,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         UsuarioLogado.cargo = usuario.getCargo();
                                     }
                                 }
+
+                                startActivityForResult(intent, Requests.LOGAR.getCod());
+                                overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {}
                         });
 
-                        startActivityForResult(intent, Requests.LOGAR.getCod());
-                        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+
                     }else{
                         Toast.makeText(LoginActivity.this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.dismiss();
                 }
             });
-
-
-            /*// Inicializa o Realm
-            Realm.init(getApplicationContext());
-
-            // Cria a configuração do realm
-            RealmConfiguration config = new RealmConfiguration.Builder().build();
-            Realm.setDefaultConfiguration(config);
-            Realm realm = Realm.getInstance(config);
-
-            //Busca todos os usuarios cadastrados
-            RealmResults<Usuario> usuario = realm.where(Usuario.class)
-                    .equalTo("email", email)
-                    .equalTo("senha", Uteis.MD5(senha)).findAll();
-
-            if (usuario.size() > 0) {
-                Intent intent = new Intent(this, DashboardActivity.class);
-                UsuarioLogado.usuarioLogado = new Usuario();
-                UsuarioLogado.usuarioLogado.setEmail(usuario.get(0).getEmail());
-                UsuarioLogado.usuarioLogado.setNome(usuario.get(0).getNome());
-                UsuarioLogado.cargo = "Professor";
-
-                startActivityForResult(intent, Requests.LOGAR.getCod());
-                overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
-            } else {
-                Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
-            }
-
-            //Fecha conexão
-            realm.close();*/
         }else{
             Intent intent = new Intent(this, DashboardActivity.class);
-            UsuarioLogado.usuarioLogado = new Usuario();
+            UsuarioLogado.usuarioLogado = new User();
             UsuarioLogado.usuarioLogado.setNome("Admin");
             UsuarioLogado.cargo = "Administrador";
             startActivityForResult(intent, Requests.LOGAR.getCod());

@@ -1,6 +1,7 @@
 package com.example.projetointegrado.reservarSala;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -12,25 +13,34 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetointegrado.CadastrarActivity;
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
+import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class ReservarActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,6 +56,13 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
     LinearLayout llNenhum;
 
     public ValoresRetornados valores = new ValoresRetornados();
+    public ArrayList<ModeloRecyclerViewReservar> lista = new ArrayList<>();
+
+    private ProgressDialog progressDialog;
+
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReserva;
+    DatabaseReference databaseSala;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +83,47 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView = findViewById(R.id.rv_Reservar);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        myAdapter = new AdapterRecyclerView(this, listarSalas(), getSupportFragmentManager());
-        mRecyclerView.setAdapter(myAdapter);
-
-        if(listarSalas().size() == 0){
-            llNenhum.setVisibility(View.VISIBLE);
-        }else{
-            llNenhum.setVisibility(View.GONE);
-        }
-
-        if(listarSalas().size() <= 4){
-            mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        }
-
         btReservarSala = (Button) findViewById(R.id.btReservarSala);
         btReservarSala.setOnClickListener(this);
 
         btLimpar = (Button) findViewById(R.id.btLimpar);
         btLimpar.setOnClickListener(this);
+
+        databaseSala = FirebaseDatabase.getInstance().getReference("Salas");
+        databaseReserva = FirebaseDatabase.getInstance().getReference("Reservas");
+
+        databaseSala.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                lista = new ArrayList();
+
+                for(DataSnapshot s : dataSnapshot.getChildren()){
+                    Sala sala = s.getValue(Sala.class);
+                    ModeloRecyclerViewReservar modelo = new ModeloRecyclerViewReservar();
+                    modelo.setHeader((sala.isLaboratorio() ? "Laboratório " : "Sala ") + sala.getnSala());
+                    modelo.setSala(sala);
+                    lista.add(modelo);
+                }
+
+                if(lista.size() == 0){
+                    llNenhum.setVisibility(View.VISIBLE);
+                }else{
+                    llNenhum.setVisibility(View.GONE);
+                }
+
+                if(lista.size() <= 4){
+                    mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
+
+                myAdapter = new AdapterRecyclerView(ReservarActivity.this, lista, getSupportFragmentManager());
+                mRecyclerView.setAdapter(myAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
 
     }
 
@@ -99,37 +139,6 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private ArrayList<ModeloRecyclerViewReservar> listarSalas(){
-
-        ArrayList<ModeloRecyclerViewReservar> lista = new ArrayList<>();
-
-        Realm.init(getApplicationContext());
-
-        // Cria a configuração do realm
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm realm = Realm.getInstance(config);
-
-        //Busca todos os usuarios cadastrados
-        RealmResults<Sala> salas = realm.where(Sala.class)
-                .findAll().sort("laboratorio", Sort.DESCENDING);
-
-        for (Sala s : salas){
-            Sala sala = new Sala();
-            sala.setLaboratorio(s.isLaboratorio());
-            sala.setnSala(s.getnSala());
-            sala.setProjetor(s.isProjetor());
-
-            ModeloRecyclerViewReservar modelo = new ModeloRecyclerViewReservar();
-            modelo.setHeader(((s.isLaboratorio() ? "Laboratório " : "Sala " ) + s.getnSala()));
-            modelo.setSala(sala);
-
-            lista.add(modelo);
-        }
-        realm.close();
-
-        return lista;
-    }
 
     public void chamaCalendario(){
         Calendar calendar = Calendar.getInstance();
@@ -198,26 +207,35 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void insereNoBanco(){
-        // Instancia do objeto e inserir valoresro
+
+        progressDialog = ProgressDialog.show(this,"Cadastrando usuário","Aguarde...",false,false);
+
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+
         Reservas res = new Reservas();
-        res.setUsuario(UsuarioLogado.getUsuarioLogadoRealm(this, UsuarioLogado.usuarioLogado.getEmail()));
+        res.setUsuario(UsuarioLogado.getUsuarioLogado());
         res.setSala(valores.getSala());
         res.setData(valores.getDataHora().getTime());
         res.setStatus(StatusReserva.PENDENTE.getCodigo());
+        res.setUsuario(UsuarioLogado.usuarioLogado);
 
-        Realm.init(getApplicationContext());
+        databaseReserva.child(Uteis.gerarChave()).setValue(res).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(ReservarActivity.this, "Reserva solicitada com sucesso!", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    finish();
 
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm banco = Realm.getInstance(config);
+                }
+                else{
+                    Toast.makeText(ReservarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            }
+        });
 
-        banco.beginTransaction();
-        banco.copyToRealm(res);
-        banco.commitTransaction();
-
-        banco.close();
-        Toast.makeText(this, "Reserva solicitada com sucesso!", Toast.LENGTH_SHORT).show();
-        finish();
     }
 
     @Override

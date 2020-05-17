@@ -49,18 +49,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<HolderRecyclerView
             public void onClick(View view) {
                 Sala s = (Sala) view.getTag();
 
-                Realm.init(c);
-                // Cria a configuração do realm
-                RealmConfiguration config = new RealmConfiguration.Builder().build();
-                Realm.setDefaultConfiguration(config);
-                Realm realm = Realm.getInstance(config);
-
-                //Busca todos os usuarios cadastrados
-                Sala sala = realm.where(Sala.class)
-                        .equalTo("nSala", s.getnSala())
-                        .equalTo("laboratorio", s.isLaboratorio()).findFirst();
-
-                ((ReservarActivity)c).valores.setSala(sala);
+                ((ReservarActivity)c).valores.setSala(s);
                 ((ReservarActivity)c).chamaCalendario();
             }
         });
