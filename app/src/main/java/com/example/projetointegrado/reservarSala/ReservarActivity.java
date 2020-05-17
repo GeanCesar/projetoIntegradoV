@@ -212,6 +212,7 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
+        String chave = Uteis.gerarChave() + UsuarioLogado.getUsuarioLogado().getNome();
 
         Reservas res = new Reservas();
         res.setUsuario(UsuarioLogado.getUsuarioLogado());
@@ -219,8 +220,9 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
         res.setData(valores.getDataHora().getTime());
         res.setStatus(StatusReserva.PENDENTE.getCodigo());
         res.setUsuario(UsuarioLogado.usuarioLogado);
+        res.setPk(chave);
 
-        databaseReserva.child(Uteis.gerarChave()).setValue(res).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReserva.child(chave).setValue(res).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {

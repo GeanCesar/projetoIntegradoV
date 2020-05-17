@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
 import com.example.projetointegrado.modelos.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -111,15 +114,10 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
-
-
-
     }
 
     @Override
-    public void onClick(View v) {
-
-    }
+    public void onClick(View v) {}
 
 
     public void resultadoAprovacao(String resultado, Reservas reservas){
@@ -142,36 +140,23 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
     private void insereNoBanco(boolean aprovado, Reservas reserva){
 
-
-        /*Realm.init(getApplicationContext());
-
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm banco = Realm.getInstance(config);
-
-        banco.beginTransaction();
-
-        Reservas r = banco.where(Reservas.class)
-                .equalTo("data", reserva.getData())
-                .equalTo("usuario.email", reserva.getUsuario().getEmail())
-                .equalTo("sala.nSala", reserva.getSala().getnSala()).findFirst();
-
         if(aprovado)
-            r.setStatus(StatusReserva.APROVADO.getCodigo());
+            reserva.setStatus(StatusReserva.APROVADO.getCodigo());
         else
-            r.setStatus(StatusReserva.RECUSADO.getCodigo());
+            reserva.setStatus(StatusReserva.RECUSADO.getCodigo());
 
-        banco.copyToRealm(r);
-        banco.commitTransaction();
-
-        banco.close();
-
-        if(aprovado)
-            Toast.makeText(this, "Reserva aprovada com sucesso!", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "Reserva recusada com sucesso!", Toast.LENGTH_SHORT).show();
-
-        atualizaListView();*/
+        databaseReservas.child(reserva.getPk()).setValue(reserva).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(AprovarActivity.this, "Aprovado com sucesso!", Toast.LENGTH_SHORT).show();
+                    atualizaListView();
+                }
+                else{
+                    Toast.makeText(AprovarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void atualizaListView(){

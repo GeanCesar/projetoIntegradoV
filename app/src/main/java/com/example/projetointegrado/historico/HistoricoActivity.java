@@ -9,18 +9,26 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
+import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.modelos.FiltroHistorico;
+import com.example.projetointegrado.modelos.ModeloRecyclerViewAprovar;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewHistorico;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
 import com.example.projetointegrado.modelos.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -39,6 +47,11 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
     RecyclerView mRecyclerView;
     AdapterRecyclerView myAdapter;
     LinearLayout llNenhum;
+
+    DatabaseReference databaseReservas;
+    ArrayList<ModeloRecyclerViewHistorico> lista = new ArrayList<>();
+
+    int filtro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +75,11 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spFiltro.setAdapter(adapter);
 
-        spFiltro.setSelection(FiltroHistorico.PENDENTE.getCodigo() - 1);
+        filtro = FiltroHistorico.TODOS.getCodigo();
+        spFiltro.setSelection(FiltroHistorico.TODOS.getCodigo() - 1);
+
+        databaseReservas = FirebaseDatabase.getInstance().getReference("Reservas");
+        databaseReservas.orderByChild("status/data");
 
         mRecyclerView = findViewById(R.id.rv_historico);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -73,9 +90,10 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void atualizaLista(int filtro){
-        myAdapter = new AdapterRecyclerView(this, listarReservas(filtro), getSupportFragmentManager());
+        this.filtro = filtro;
+        myAdapter = new AdapterRecyclerView(this, listarReservas(), getSupportFragmentManager());
         mRecyclerView.setAdapter(myAdapter);
-        if(listarReservas(filtro).size() > 0){
+        if(listarReservas().size() > 0){
             llNenhum.setVisibility(View.GONE);
         }else{
             llNenhum.setVisibility(View.VISIBLE);
@@ -83,66 +101,75 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
     }
 
 
-    private ArrayList<ModeloRecyclerViewHistorico> listarReservas(int codigo){
+    private ArrayList<ModeloRecyclerViewHistorico> listarReservas(){
 
-        ArrayList<ModeloRecyclerViewHistorico> lista = new ArrayList<>();
+        databaseReservas.addValueEventListener(new ValueEventListener() {
 
-        Realm.init(getApplicationContext());
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        // Cria a configuração do realm
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm realm = Realm.getInstance(config);
+                lista = new ArrayList();
 
-        String []fieldNames={"status","data"};
-        Sort sort[]={Sort.ASCENDING,Sort.ASCENDING};
+                for(DataSnapshot s : dataSnapshot.getChildren()){
 
-        RealmResults<Reservas> reservas = null;
+                    Reservas reserva = s.getValue(Reservas.class);
+                    ModeloRecyclerViewHistorico m = new ModeloRecyclerViewHistorico();
 
-        //Busca todos os usuarios cadastrados
-        /*if(codigo == FiltroHistorico.TODOS.getCodigo()){
-            reservas = realm.where(Reservas.class).equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
-                    .findAllSorted(fieldNames, sort);
-        }else if(codigo == FiltroHistorico.PENDENTE.getCodigo()){
-           reservas = realm.where(Reservas.class)
-                    .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
-                    .equalTo("status", StatusReserva.PENDENTE.getCodigo())
-                    .findAllSorted(fieldNames, sort);
-        }else if(codigo == FiltroHistorico.APROVADO.getCodigo()) {
-            reservas = realm.where(Reservas.class)
-                    .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
-                    .equalTo("status", StatusReserva.APROVADO.getCodigo())
-                    .findAllSorted(fieldNames, sort);
-        }else if(codigo == FiltroHistorico.RECUSADO.getCodigo()) {
-            reservas = realm.where(Reservas.class)
-                    .equalTo("usuario.email", UsuarioLogado.usuarioLogado.getEmail())
-                    .equalTo("status", StatusReserva.RECUSADO.getCodigo())
-                    .findAllSorted(fieldNames, sort);
-        }
+                    if(filtro == FiltroHistorico.TODOS.getCodigo()){
 
-        for (Reservas s : reservas){
+                        if(reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.usuarioLogado.getEmail())){
+                            m.setReserva(reserva);
+                            lista.add(m);
+                        }
 
-            Sala sala = new Sala();
-            sala.setProjetor(s.getSala().isProjetor());
-            sala.setLaboratorio(s.getSala().isLaboratorio());
-            sala.setnSala(s.getSala().getnSala());
+                    }else if(filtro == FiltroHistorico.PENDENTE.getCodigo()){
+                        if(reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.usuarioLogado.getEmail())){
+                            if(reserva.getStatus() == StatusReserva.PENDENTE.getCodigo()){
+                                m.setReserva(reserva);
+                                lista.add(m);
+                            }
+                        }
+                    }else if(filtro == FiltroHistorico.APROVADO.getCodigo()) {
+                        if(reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.usuarioLogado.getEmail())){
+                            if(reserva.getStatus() == StatusReserva.APROVADO.getCodigo()){
+                                m.setReserva(reserva);
+                                lista.add(m);
+                            }
+                        }
+                    }else if(filtro == FiltroHistorico.RECUSADO.getCodigo()) {
+                        if(reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.usuarioLogado.getEmail())){
+                            if(reserva.getStatus() == StatusReserva.RECUSADO.getCodigo()){
+                                m.setReserva(reserva);
+                                lista.add(m);
+                            }
+                        }
+                    }
+                }
 
-            Usuario usuario = new Usuario();
-            usuario.setNome(s.getUsuario().getNome());
-            usuario.setEmail(s.getUsuario().getEmail());
+                if(lista.size() == 0){
+                    llNenhum.setVisibility(View.VISIBLE);
+                }else{
+                    llNenhum.setVisibility(View.GONE);
+                }
 
-            Reservas r = new Reservas();
-            r.setStatus(s.getStatus());
-            r.setData(s.getData());
-            r.setSala(sala);
-            r.setUsuario(usuario);
+                if(lista.size() <= 4){
+                    mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
 
-            ModeloRecyclerViewHistorico modelo = new ModeloRecyclerViewHistorico();
-            modelo.setReserva(r);
+                myAdapter = new AdapterRecyclerView(HistoricoActivity.this, lista, getSupportFragmentManager());
+                mRecyclerView.setAdapter(myAdapter);
 
-            lista.add(modelo);
-        }
-        realm.close();*/
+                if(lista.size() > 0){
+                    llNenhum.setVisibility(View.GONE);
+                }else{
+                    llNenhum.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
 
         return lista;
     }
@@ -160,5 +187,11 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
     }
 }

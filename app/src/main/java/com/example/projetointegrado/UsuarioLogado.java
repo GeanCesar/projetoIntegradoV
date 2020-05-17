@@ -45,7 +45,7 @@ public class UsuarioLogado {
 
                         User u = new User();
                         u.setEmail(usuario.getEmail());
-                        u.setNome(usuario.getEmail());
+                        u.setNome(usuario.getNome());
 
                         if(u!=null)
                             usuarioLogado = u;
