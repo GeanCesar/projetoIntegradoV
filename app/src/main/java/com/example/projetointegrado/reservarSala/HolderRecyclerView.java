@@ -12,7 +12,6 @@ public class HolderRecyclerView extends RecyclerView.ViewHolder{
 
     TextView tvHeader;
 
-
     public HolderRecyclerView(@NonNull View itemView) {
         super(itemView);
         tvHeader = itemView.findViewById(R.id.tvHeadItemReservar);

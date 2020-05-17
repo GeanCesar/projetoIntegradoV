@@ -5,7 +5,6 @@ public class ModeloRecyclerView {
     private String header;
     private String content;
 
-
     public String getHeader() {
         return header;
     }

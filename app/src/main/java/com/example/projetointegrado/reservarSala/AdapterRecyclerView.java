@@ -15,9 +15,6 @@ import com.example.projetointegrado.modelos.Sala;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-
 public class AdapterRecyclerView extends RecyclerView.Adapter<HolderRecyclerView>{
 
     Context c;

@@ -16,14 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
-import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.modelos.FiltroHistorico;
-import com.example.projetointegrado.modelos.ModeloRecyclerViewAprovar;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewHistorico;
 import com.example.projetointegrado.modelos.Reservas;
-import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
-import com.example.projetointegrado.modelos.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,11 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class HistoricoActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -170,14 +161,11 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
-
         return lista;
     }
 
     @Override
-    public void onClick(View v) {
-
-    }
+    public void onClick(View v) {}
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -185,9 +173,7 @@ public class HistoricoActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 
     @Override
     public void finish() {

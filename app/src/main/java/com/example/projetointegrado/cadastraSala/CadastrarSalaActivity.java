@@ -13,9 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.projetointegrado.CadastrarActivity;
 import com.example.projetointegrado.R;
-import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.Sala;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,9 +47,6 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
         tv_usuario_salas = (TextView) findViewById(R.id.tv_usuario_salas);
         tv_cargo_salas = (TextView) findViewById(R.id.tv_cargo_salas);
 
-        //tv_usuario_salas.setText(UsuarioLogado.usuarioLogado.getNome());
-        //tv_cargo_salas.setText(UsuarioLogado.cargo);
-
         etSala = (EditText) findViewById(R.id.etNSala);
 
         sw_projetor = (Switch) findViewById(R.id.sw_Projetor);
@@ -81,8 +76,6 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
 
                 existe();
             }
-
-
         }
 
     }
@@ -120,9 +113,7 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
                     }
                 }
             });
-
         }
-
     }
 
     private void existe(){

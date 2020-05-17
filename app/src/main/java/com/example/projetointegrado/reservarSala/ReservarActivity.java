@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetointegrado.CadastrarActivity;
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
@@ -39,8 +38,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-
 
 public class ReservarActivity extends AppCompatActivity implements View.OnClickListener {
 

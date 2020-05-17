@@ -5,24 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.modelos.User;
-import com.example.projetointegrado.modelos.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 public class CadastrarActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -100,84 +97,53 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void chamaCadastro(final String nome, final String email, String senha){
-        if(verificaEmail(email)) {
 
-            progressDialog = ProgressDialog.show(this,"Cadastrando usuário","Aguarde...",false,false);
+        progressDialog = ProgressDialog.show(this,"Cadastrando usuário","Aguarde...",false,false);
 
-            firebaseAuth.createUserWithEmailAndPassword(email, Uteis.MD5(senha)).addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
-                    if(task.isSuccessful()){
+        firebaseAuth.createUserWithEmailAndPassword(email, Uteis.MD5(senha)).addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
+                if(task.isSuccessful()){
 
-                        User user = new User(email, nome, nome.equalsIgnoreCase("Admin") ? "Administrador" : "Professor");
-                        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+                    User user = new User(email, nome, nome.equalsIgnoreCase("Admin") ? "Administrador" : "Professor");
+                    FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
-                        databaseReference.child(usuario.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()) {
-                                    Toast.makeText(CadastrarActivity.this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                    progressDialog.dismiss();
-                                }
-                                else{
-                                    Toast.makeText(CadastrarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
+                    databaseReference.child(usuario.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(CadastrarActivity.this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                                finish();
+                                progressDialog.dismiss();
                             }
-                        });
-                    }else{
-                        Toast.makeText(CadastrarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
+                            else{
+                                progressDialog.dismiss();
+                            }
+                        }
+                    });
+                }else{
+
+                    try {
+                        throw task.getException();
+                    } catch(FirebaseAuthWeakPasswordException e) {
+                        etSenhaCadastro.setError("Senha fraca");
+                        etSenhaCadastro.requestFocus();
+                    } catch(FirebaseAuthInvalidCredentialsException e) {
+                        etEmailCadastro.setError("Email inválido");
+                        etEmailCadastro.requestFocus();
+                    } catch(FirebaseAuthUserCollisionException e) {
+                        etEmailCadastro.setError("Email ja utilizado");
+                        etEmailCadastro.requestFocus();
+                    } catch (Exception e){
+
                     }
 
+                    progressDialog.dismiss();
                 }
-            });
-            /*// Instancia do objeto e inserir valores
-            Usuario usu = new Usuario();
-            usu.setEmail(email);
-            usu.setSenha(senha);
-            usu.setNome(nome);
 
-            // Inicializa o Realm
-            Realm.init(getApplicationContext());
+            }
+        });
 
-            // Cria a configuração do realm
-            RealmConfiguration config = new RealmConfiguration.Builder().build();
-            Realm.setDefaultConfiguration(config);
-            Realm banco = Realm.getInstance(config);
-
-
-            banco.beginTransaction();
-            banco.copyToRealm(usu);
-            banco.commitTransaction();
-
-            banco.close();*/
-
-
-
-        }else{
-            Toast.makeText(this, "Email já cadastrado", Toast.LENGTH_SHORT).show();
-            return;
-        }
-    }
-
-    private boolean verificaEmail(String email){
-        /*Realm.init(getApplicationContext());
-
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
-        Realm realm = Realm.getInstance(config);
-
-        RealmResults<Usuario> usuario = realm.where(Usuario.class)
-                .equalTo("email", email).findAll();
-
-        if(usuario.size() > 0){
-            realm.close();
-            return false;
-        }
-        realm.close();*/
-        return true;
     }
 
     @Override

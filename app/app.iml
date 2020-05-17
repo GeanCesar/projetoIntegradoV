@@ -93,8 +93,6 @@
     <orderEntry type="library" name="Gradle: __local_aars__:./app/libs/activation.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:./app/libs/mail.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:./app/libs/additionnal.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: io.realm:realm-annotations:4.1.1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0@jar" level="project" />
@@ -103,8 +101,6 @@
     <orderEntry type="library" name="Gradle: com.google.auto.value:auto-value-annotations:1.6.5@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.dagger:dagger:2.24@jar" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: io.realm:realm-android-library:4.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.getkeepsafe.relinker:relinker:1.2.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.0.0@aar" level="project" />

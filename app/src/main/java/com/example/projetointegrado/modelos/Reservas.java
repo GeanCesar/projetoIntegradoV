@@ -2,9 +2,6 @@ package com.example.projetointegrado.modelos;
 
 import java.util.Date;
 
-import io.realm.RealmObject;
-import io.realm.annotations.Required;
-
 public class Reservas {
 
     public Reservas(String pk,User usuario, Date data, Sala sala, int status){

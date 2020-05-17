@@ -18,7 +18,6 @@ import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
 import com.example.projetointegrado.historico.HistoricoActivity;
 import com.example.projetointegrado.modelos.User;
-import com.example.projetointegrado.modelos.Usuario;
 import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.example.projetointegrado.reservas.ReservasActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,8 +77,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         btHistorico = (RelativeLayout)findViewById(R.id.bt_Historico);
         btHistorico.setOnClickListener(this);
 
-
-
         databaseUsuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -100,8 +97,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
             }
         });
-
-
 
         tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
         tvCargo.setText(UsuarioLogado.cargo);

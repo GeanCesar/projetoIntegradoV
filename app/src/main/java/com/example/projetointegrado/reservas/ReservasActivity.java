@@ -29,10 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class ReservasActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -65,10 +61,6 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
 
         databaseReservas = FirebaseDatabase.getInstance().getReference("Reservas");
         databaseReservas.child("sala").orderByChild("laboratorio");
-
-
-
-
 
         databaseReservas.addValueEventListener(new ValueEventListener() {
 
@@ -112,15 +104,10 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
-
-
     }
-
 
     @Override
-    public void onClick(View v) {
-
-    }
+    public void onClick(View v) {}
 
     @Override
     public void finish() {
