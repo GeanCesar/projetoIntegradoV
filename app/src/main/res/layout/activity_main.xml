@@ -27,17 +27,14 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
-            <TextView
-                android:id="@+id/textView"
+            <ImageView
+                android:id="@+id/imageView7"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
+                android:layout_height="154dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="150dp"
-                android:text="LOGO"
-                android:textAlignment="center"
-                android:textColor="@color/branco"
-                android:textSize="56sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="200dp"
+                android:padding="15dp"
+                app:srcCompat="@drawable/logo" />
 
             <Button
                 android:id="@+id/btCadastrar"

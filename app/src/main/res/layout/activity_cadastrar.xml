@@ -26,17 +26,14 @@
             android:paddingLeft="20dp"
             android:paddingEnd="20dp">+
 
-            <TextView
-                android:id="@+id/textView"
+            <ImageView
+                android:id="@+id/imageView9"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:text="LOGO"
-                android:textAlignment="center"
-                android:textColor="@color/branco"
-                android:textSize="56sp"
-                android:textStyle="bold" />
+                android:layout_height="154dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="35dp"
+                android:padding="15dp"
+                app:srcCompat="@drawable/logo" />
 
             <TextView
                 android:layout_width="match_parent"

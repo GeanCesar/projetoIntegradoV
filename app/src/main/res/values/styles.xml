@@ -1,7 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:colorPrimaryDark">@color/azul_projeto</item>
+    </style>
     <style name="CalendarioAzul" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/azul_projeto</item>
     </style>
@@ -16,7 +18,7 @@
     </style>
 
     <style name="alertaAzul" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:colorAccent">@color/azul_projeto</item>
+        <item name="android:colorAccent">#0F8DAC</item>
         <item name="android:background">@color/cinzaEscuroA</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
     </style>
