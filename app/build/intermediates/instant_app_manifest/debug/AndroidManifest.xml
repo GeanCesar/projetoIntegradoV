@@ -44,6 +44,7 @@
         <activity android:name="com.example.projetointegrado.reservarSala.ReservarActivity" />
         <activity android:name="com.example.projetointegrado.aprovarReserva.AprovarActivity" />
         <activity android:name="com.example.projetointegrado.historico.HistoricoActivity" />
+        <activity android:name="com.example.projetointegrado.RecuperarSenha" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"

@@ -312,6 +312,62 @@
 
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/bt_CadAdmin"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="0.65"
+                            android:background="@drawable/botao_dash"
+                            android:clickable="true"
+                            android:paddingBottom="15dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clickable="false">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="154dp"
+                                    android:clickable="false"
+                                    android:padding="40dp"
+                                    android:paddingBottom="50dp"
+                                    android:scaleType="centerInside"
+                                    app:srcCompat="@drawable/ic_useradd" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="25dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:clickable="false"
+                                    android:text="Cadastrar admin"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/branco"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="0.65"
+                            android:background="@color/transparent"
+                            android:clickable="true"
+                            android:elevation="@android:dimen/app_icon_size"
+                            android:paddingBottom="15dp" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

@@ -100,7 +100,7 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
 
         progressDialog = ProgressDialog.show(this,"Cadastrando usuário","Aguarde...",false,false);
 
-        firebaseAuth.createUserWithEmailAndPassword(email, Uteis.MD5(senha)).addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
                 if(task.isSuccessful()){

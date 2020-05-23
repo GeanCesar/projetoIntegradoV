@@ -1146,7 +1146,9 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_sair
 drawable ic_sala
 drawable ic_user
+drawable ic_useradd
 drawable linha_bottom_azul
+drawable logo
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1244,11 +1246,13 @@ id blocking
 id bottom
 id btCadastrar
 id btCadastrarSala
+id btEnviarEmailRecuperar
 id btLimpar
 id btLogin
 id btReservarSala
 id bt_Aprovar
 id bt_AprovarFragment
+id bt_CadAdmin
 id bt_CancelarFragment
 id bt_Historico
 id bt_RecusarFragment
@@ -1292,6 +1296,7 @@ id enterAlways
 id enterAlwaysCollapsed
 id etEmailCadastrar
 id etEmailLogin
+id etEmailRecuperar
 id etNSala
 id etNomeCadastrar
 id etSenha2Cadastro
@@ -1319,11 +1324,15 @@ id icon_only
 id ifRoom
 id image
 id imageView
+id imageView12
 id imageView2
 id imageView3
 id imageView4
 id imageView5
 id imageView6
+id imageView7
+id imageView8
+id imageView9
 id info
 id invisible
 id italic
@@ -1342,6 +1351,7 @@ id llNenhumHistorico
 id llNenhumReservar
 id llNenhumReservas
 id ll_Admin
+id ll_EmailRecuperar
 id ll_LinhaAprovar
 id ll_LinhaHistorico
 id ll_Professor
@@ -1440,10 +1450,8 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView
 id textView2
 id textView3
-id textView4
 id textView5
 id textView6
 id textView7
@@ -1465,6 +1473,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id tvContentItem
 id tvDataItemHistorico
+id tvEsqueceuSenha
 id tvHeadItem
 id tvHeadItemAprovar
 id tvHeadItemHistorico
@@ -1558,6 +1567,7 @@ layout activity_dashboard
 layout activity_historico
 layout activity_login
 layout activity_main
+layout activity_recuperar_senha
 layout activity_reservar
 layout activity_reservas
 layout custom_dialog

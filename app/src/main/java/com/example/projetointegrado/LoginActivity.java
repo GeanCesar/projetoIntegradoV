@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projetointegrado.modelos.User;
@@ -23,12 +24,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btLogin;
     EditText etEmailLogin;
     EditText etSenhaLogin;
+
+    TextView tvEsqueceu;
 
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
@@ -42,11 +47,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btLogin = (Button) findViewById(R.id.btLogin);
         btLogin.setOnClickListener(this);
 
+        tvEsqueceu = (TextView) findViewById(R.id.tvEsqueceuSenha);
+
         etEmailLogin = (EditText) findViewById(R.id.etEmailLogin);
         etSenhaLogin = (EditText) findViewById(R.id.etSenhaLogin);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseUsuario = FirebaseDatabase.getInstance().getReference("Users");
+
+        tvEsqueceu.setOnClickListener(this);
 
         if(firebaseAuth.getCurrentUser() != null){
             Intent intent = new Intent(this, DashboardActivity.class);
@@ -68,6 +77,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String senha = etSenhaLogin.getText().toString().trim();
                 fazLogin(email, senha);
             }
+        }else if(v.getId() == tvEsqueceu.getId()){
+
+            Intent intent = new Intent(LoginActivity.this, RecuperarSenha.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+
         }
     }
 
@@ -87,12 +102,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(!verificaAdmin(email, senha)) {
             progressDialog = ProgressDialog.show(this,"Verificando login","Aguarde...",false,false);
-            firebaseAuth.signInWithEmailAndPassword(email, Uteis.MD5(senha)).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            firebaseAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-
-
                         databaseUsuario.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -128,6 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(this, DashboardActivity.class);
             UsuarioLogado.usuarioLogado = new User();
             UsuarioLogado.usuarioLogado.setNome("Admin");
+            UsuarioLogado.usuarioLogado.setEmail("admin@admin.com");
             UsuarioLogado.cargo = "Administrador";
             startActivityForResult(intent, Requests.LOGAR.getCod());
             overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);

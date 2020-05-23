@@ -2709,12 +2709,12 @@
                 {
                     "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/values/styles.xml",
                     "from": {
-                        "startLines": "3,-1,-1,-1",
-                        "startColumns": "4,-1,-1,-1",
-                        "startOffsets": "54,-1,-1,-1",
-                        "endLines": "5,-1,-1,-1",
-                        "endColumns": "12,-1,-1,-1",
-                        "endOffsets": "207,-1,-1,-1"
+                        "startLines": "-1,-1,-1,19",
+                        "startColumns": "-1,-1,-1,4",
+                        "startOffsets": "-1,-1,-1,630",
+                        "endLines": "-1,-1,-1,23",
+                        "endColumns": "-1,-1,-1,12",
+                        "endOffsets": "-1,-1,-1,908"
                     },
                     "to": {
                         "startLines": "680,2105,2335,3059",
@@ -2722,7 +2722,7 @@
                         "startOffsets": "43289,134894,150906,199262",
                         "endLines": "682,2107,2341,3063",
                         "endColumns": "12,12,12,12",
-                        "endOffsets": "43441,135034,151171,199528"
+                        "endOffsets": "43441,135034,151171,199540"
                     }
                 },
                 {

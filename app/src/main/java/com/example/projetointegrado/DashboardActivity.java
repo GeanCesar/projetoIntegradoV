@@ -77,26 +77,28 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         btHistorico = (RelativeLayout)findViewById(R.id.bt_Historico);
         btHistorico.setOnClickListener(this);
 
-        databaseUsuario.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()){
-                    User usuario = usuarioSnapshot.getValue(User.class);
+        if(firebaseAuth.getCurrentUser() != null) {
+            databaseUsuario.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()) {
+                        User usuario = usuarioSnapshot.getValue(User.class);
 
-                    if(usuario.getEmail().equalsIgnoreCase(firebaseAuth.getCurrentUser().getEmail())){
-                        UsuarioLogado.usuarioLogado.setNome(usuario.getNome());
-                        UsuarioLogado.cargo = usuario.getCargo();
-                        tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
-                        tvCargo.setText(UsuarioLogado.cargo);
+                        if (usuario.getEmail().equalsIgnoreCase(firebaseAuth.getCurrentUser().getEmail())) {
+                            UsuarioLogado.usuarioLogado.setNome(usuario.getNome());
+                            UsuarioLogado.cargo = usuario.getCargo();
+                            tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
+                            tvCargo.setText(UsuarioLogado.cargo);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
 
         tvUsuario.setText(UsuarioLogado.usuarioLogado.getNome());
         tvCargo.setText(UsuarioLogado.cargo);

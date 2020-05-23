@@ -31,6 +31,7 @@
         <activity android:name=".reservarSala.ReservarActivity" />
         <activity android:name=".aprovarReserva.AprovarActivity" />
         <activity android:name=".historico.HistoricoActivity" />
+        <activity android:name=".RecuperarSenha" />
 
     </application>
 
