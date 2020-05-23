@@ -37,6 +37,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout btReservar;
     RelativeLayout btAprovar;
     RelativeLayout btHistorico;
+    RelativeLayout btCadastrarAdmin;
     LinearLayout llAdmin;
     LinearLayout llProfessor;
 
@@ -76,6 +77,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         btHistorico = (RelativeLayout)findViewById(R.id.bt_Historico);
         btHistorico.setOnClickListener(this);
+
+        btCadastrarAdmin = (RelativeLayout)findViewById(R.id.bt_CadAdmin);
+        btCadastrarAdmin.setOnClickListener(this);
 
         if(firebaseAuth.getCurrentUser() != null) {
             databaseUsuario.addValueEventListener(new ValueEventListener() {
@@ -127,6 +131,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }else if(v.getId() == btHistorico.getId()){
             Intent intent = new Intent(this, HistoricoActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+        }else if(v.getId() == btCadastrarAdmin.getId()){
+            Intent intent = new Intent(this, CadastrarActivity.class);
+            intent.putExtra("cargo", "Administrador");
             startActivity(intent);
             overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
         }

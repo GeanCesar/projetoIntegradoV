@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class ReservasActivity extends AppCompatActivity implements View.OnClickListener{
@@ -69,14 +70,23 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
 
                 lista = new ArrayList();
 
+
+
                 for(DataSnapshot s : dataSnapshot.getChildren()){
 
                     Reservas reserva = s.getValue(Reservas.class);
                     if(reserva.getStatus() == StatusReserva.APROVADO.getCodigo() && reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.getUsuarioLogado().getEmail())){
-                        ModeloRecyclerView modelo = new ModeloRecyclerView();
-                        modelo.setHeader((reserva.getSala().isLaboratorio() ? "Laboratório " : "Sala ") +  reserva.getSala().getnSala() + "");
-                        modelo.setContent(Uteis.converteDataHora(reserva.getData()));
-                        lista.add(modelo);
+
+                        Calendar filtroData = Calendar.getInstance();
+                        filtroData.setTime(reserva.getData());
+                        filtroData.add(Calendar.DATE, +10);
+
+                        if(Calendar.getInstance().compareTo(filtroData) < 1){
+                            ModeloRecyclerView modelo = new ModeloRecyclerView();
+                            modelo.setHeader((reserva.getSala().isLaboratorio() ? "Laboratório " : "Sala ") +  reserva.getSala().getnSala() + "");
+                            modelo.setContent(Uteis.converteDataHora(reserva.getData()));
+                            lista.add(modelo);
+                        }
                     }
 
                 }

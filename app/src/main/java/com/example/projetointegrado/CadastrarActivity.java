@@ -34,12 +34,24 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
+    String cargoACadastrar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
         btCadastrar = (Button) findViewById(R.id.btCadastrar);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            cargoACadastrar = extras.getString("cargo");
+        }else{
+            cargoACadastrar = "Professor";
+        }
+
+
+
 
         etNomeCadastro = (EditText) findViewById(R.id.etNomeCadastrar);
         etEmailCadastro = (EditText) findViewById(R.id.etEmailCadastrar);
@@ -69,27 +81,27 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
     private boolean validaCampos(String nome, String email, String senha, String senha2){
 
         if(nome.equals("")){
-            Toast.makeText(this, "O nome é obrigatório", Toast.LENGTH_SHORT).show();
+            etNomeCadastro.setError("O nome é obrigatório");
             etNomeCadastro.requestFocus();
             return false;
         }
         if(email.equals("")){
-            Toast.makeText(this, "O email é obrigatório", Toast.LENGTH_SHORT).show();
+            etEmailCadastro.setError("O email é obrigatório");
             etEmailCadastro.requestFocus();
             return false;
         }
         if(senha.equals("")){
-            Toast.makeText(this, "A senha é obrigatória", Toast.LENGTH_SHORT).show();
+            etSenhaCadastro.setError("A senha é obrigatória");
             etSenhaCadastro.requestFocus();
             return false;
         }
         if(senha2.equals("")){
-            Toast.makeText(this, "A confirmação da senha é obrigatória", Toast.LENGTH_SHORT).show();
+            etSenha2Cadastro.setError("A confirmação da senha é obrigatória");
             etSenha2Cadastro.requestFocus();
             return false;
         }
         if(!senha.equals(senha2)){
-            Toast.makeText(this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();
+            etSenhaCadastro.setError("As senhas não coincidem");
             etSenhaCadastro.requestFocus();
             return false;
         }
@@ -105,7 +117,7 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
             public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
                 if(task.isSuccessful()){
 
-                    User user = new User(email, nome, nome.equalsIgnoreCase("Admin") ? "Administrador" : "Professor");
+                    User user = new User(email, nome, cargoACadastrar);
                     FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
                     databaseReference.child(usuario.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

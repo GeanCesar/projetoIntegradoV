@@ -88,11 +88,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean validaCampos(){
         if(etEmailLogin.getText().toString().equals("")) {
-            Toast.makeText(this, "O campo email é obrigatório", Toast.LENGTH_SHORT).show();
+            etEmailLogin.setError("O campo email é obrigatório");
             return false;
         }
         if(etSenhaLogin.getText().toString().equals("")) {
-            Toast.makeText(this, "O campo senha é obrigatório", Toast.LENGTH_SHORT).show();
+            etSenhaLogin.setError("O campo senha é obrigatório");
             return false;
         }
         return true;

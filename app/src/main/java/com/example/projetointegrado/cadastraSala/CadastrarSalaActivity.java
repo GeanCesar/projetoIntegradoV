@@ -173,12 +173,12 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
 
     private boolean consisteDados(){
         if(Uteis.converteStringToInt(etSala.getText().toString())==0){
-            Toast.makeText(this, "O número da sala é obrigatório", Toast.LENGTH_SHORT).show();
+            etSala.setError("O número da sala é obrigatório");
             etSala.requestFocus();
             return false;
         }
         if(Uteis.converteStringToInt(etSala.getText().toString()) < 1){
-            Toast.makeText(this, "Número da sala inválido", Toast.LENGTH_SHORT).show();
+            etSala.setError("Número da sala inválido");
             etSala.requestFocus();
             return false;
         }
