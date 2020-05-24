@@ -1,4 +1,4 @@
-#Sun May 24 13:58:46 BRT 2020
+#Sun May 24 15:13:22 BRT 2020
 base.0=/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

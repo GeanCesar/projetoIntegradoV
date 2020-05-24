@@ -1,5 +1,6 @@
 package com.example.projetointegrado;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -125,8 +126,9 @@ public class CadastrarActivity extends AppCompatActivity implements View.OnClick
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()) {
                                 Toast.makeText(CadastrarActivity.this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-                                finish();
                                 progressDialog.dismiss();
+                                setResult(Activity.RESULT_OK);
+                                finish();
                             }
                             else{
                                 progressDialog.dismiss();

@@ -20,12 +20,12 @@
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/drawable/warning.png"
     },
     {
-        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_reservar.xml.flat",
-        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_reservar.xml"
-    },
-    {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_list_item.xml.flat",
         "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/layout_activity_reservar.xml.flat",
+        "source": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/src/main/res/layout/activity_reservar.xml"
     },
     {
         "merged": "/home/gean/AndroidStudioProjects/ProjetoIntegrado/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",

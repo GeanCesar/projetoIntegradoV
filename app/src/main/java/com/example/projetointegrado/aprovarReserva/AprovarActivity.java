@@ -122,14 +122,49 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
         if(resultado.equalsIgnoreCase("Aprovado")){
             insereNoBanco(true, reservas);
             String mensagem;
-            mensagem = "Olá, " + reservas.getUsuario().getNome() +"\nO administrador analisou seu pedido da reserva "  + (reservas.getSala().isLaboratorio() ? "do laboratório: Nº " : "da sala: Nº " ) + reservas.getSala().getnSala() + " no dia " + Uteis.converteDataHora(reservas.getData()) + ", e aprovou sua solicitação."
-                        + "\nParabéns, agora basta utilizá-la no dia solicitado";
+            mensagem = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<title></title>" +
+                    "<style type='text/css'>"+
+                        "*{" +
+                            "font-family: 'Arial';" +
+                        "}" +
+                        "h3, h4{" +
+                            "font-weight: normal" +
+                        "}"+
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<h3>Olá, <b>  " + reservas.getUsuario().getNome() + " </b> </h3>" +
+                    "<h4>O administrador analisou seu pedido da reserva  <b> " + (reservas.getSala().isLaboratorio() ? " </b> do laboratório: <b> Nº " : "</b> da sala: <b> Nº " ) + reservas.getSala().getnSala() + " </b> no dia <b> " + Uteis.converteDataHora(reservas.getData()) + " </b>, e aprovou sua solicitação. </h4>" +
+                    "<h3>Parabéns, agora basta utilizá-la no dia solicitado!</h3>" +
+                    "</body>" +
+                    "</html>";
+
             Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reserva", mensagem, this);
         }else if(resultado.equalsIgnoreCase("Recusado")){
             insereNoBanco(false, reservas);
             String mensagem;
-            mensagem = "Olá, " + reservas.getUsuario().getNome() +"\nO administrador analisou seu pedido da reserva " + (reservas.getSala().isLaboratorio() ? "do laboratório: Nº " : "da sala: Nº " ) + reservas.getSala().getnSala() + " no dia " + Uteis.converteDataHora(reservas.getData()) + ", e não encontrou disponibilidade no dia, hora e local solicitado."
-                    + "\nTente uma outra sala ou um outro dia.";
+            mensagem = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<title></title>" +
+                    "<style type='text/css'>"+
+                    "*{" +
+                        "font-family: 'Arial';" +
+                    "}" +
+                    "h3, h4{" +
+                        "font-weight: normal" +
+                    "}"+
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<h3>Olá, <b>  " + reservas.getUsuario().getNome() + " </b> </h3>" +
+                    "<h4>O administrador analisou seu pedido da reserva  <b> " + (reservas.getSala().isLaboratorio() ? " </b> do laboratório: <b> Nº " : "</b> da sala: <b> Nº " ) + reservas.getSala().getnSala() + " </b> no dia <b> " + Uteis.converteDataHora(reservas.getData()) + " </b>, e não encontrou disponibilidade no dia, hora e local solicitado. </h4>" +
+                    "<h3>Tente uma outra sala ou um outro dia!</h3>" +
+                    "</body>" +
+                    "</html>";
             Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reserva", mensagem, this);
         }else{
             return;

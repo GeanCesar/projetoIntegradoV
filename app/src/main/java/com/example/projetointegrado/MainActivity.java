@@ -3,6 +3,7 @@ package com.example.projetointegrado;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btCadastrar = (Button)findViewById(R.id.btCadastrar);
         btCadastrar.setOnClickListener(this);
 
-
-
         UsuarioLogado.usuarioLogado = new User();
         databaseUsuario = FirebaseDatabase.getInstance().getReference("Users");
         databaseUsuario.equalTo(UsuarioLogado.usuarioLogado.getEmail(), "email");
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseUsuario = FirebaseDatabase.getInstance().getReference("Users");
 
         progressDialog = ProgressDialog.show(this,"Verificando login","Aguarde...",false,false);
-
 
         if(firebaseAuth.getCurrentUser() != null) {
             databaseUsuario.addValueEventListener(new ValueEventListener() {
@@ -69,16 +67,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             startActivityForResult(intent, Requests.LOGAR.getCod());
                             overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
                         }
-
                     }
-
                     progressDialog.dismiss();
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
             });
         }else{
             progressDialog.dismiss();
@@ -101,7 +95,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void chamaCadastrar(){
         Intent intent = new Intent(this, CadastrarActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, Requests.CADASTRAR.getCod());
         overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
     }
+
+    @Override
+    public  void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == Activity.RESULT_OK){
+            if(firebaseAuth.getCurrentUser() != null) {
+                databaseUsuario.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()) {
+                            User usuario = usuarioSnapshot.getValue(User.class);
+
+                            if (usuario.getEmail().equalsIgnoreCase(firebaseAuth.getCurrentUser().getEmail())) {
+                                UsuarioLogado.usuarioLogado.setNome(usuario.getNome());
+                                UsuarioLogado.cargo = usuario.getCargo();
+                                UsuarioLogado.usuarioLogado.setEmail(firebaseAuth.getCurrentUser().getEmail());
+
+                                progressDialog.dismiss();
+
+                                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+
+                                startActivityForResult(intent, Requests.LOGAR.getCod());
+                                overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+                            }
+                        }
+                        progressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {}
+                });
+            }else{
+                progressDialog.dismiss();
+            }
+        }
+    }
+
 }

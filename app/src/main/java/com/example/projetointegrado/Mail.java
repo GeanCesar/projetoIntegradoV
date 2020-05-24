@@ -86,6 +86,8 @@ public class Mail extends AsyncTask<Void,Void,Void> {
             //Adding message
             mm.setText(message);
 
+            mm.setContent(message,  "text/html; charset=utf-8");
+
             //Sending email
             Transport.send(mm);
 

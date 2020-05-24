@@ -1,7 +1,8 @@
 package com.example.projetointegrado;
 
 public enum Requests {
-    LOGAR(1);
+    LOGAR(1),
+    CADASTRAR(2);
 
     Requests(int cod){
         this.setCod(cod);
