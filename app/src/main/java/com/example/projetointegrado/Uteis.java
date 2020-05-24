@@ -31,6 +31,25 @@ public class Uteis {
         }
     }
 
+    public static String converteData(Date date){
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return  df.format(date);
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+
+    public static String converteHora(Date date){
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm a");
+        try {
+            return  df.format(date);
+        }catch (Exception e){
+            return "";
+        }
+    }
+
     public static String converteDataHora(Date date){
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm a");
         try {

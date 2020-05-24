@@ -25,6 +25,7 @@ import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
 import com.example.projetointegrado.modelos.StatusReserva;
+import com.example.projetointegrado.modelos.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -217,6 +218,7 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
         res.setData(valores.getDataHora().getTime());
         res.setStatus(StatusReserva.PENDENTE.getCodigo());
         res.setUsuario(UsuarioLogado.usuarioLogado);
+        res.setAprovador(UsuarioLogado.usuarioLogado);
         res.setPk(chave);
 
         databaseReserva.child(chave).setValue(res).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class ReservasActivity extends AppCompatActivity implements View.OnClickListener{
+public class ReservasActivity extends AppCompatActivity implements View.OnClickListener, DialogDetalhes.BottomSheetListener{
 
     RecyclerView mRecyclerView;
     AdapterRecylcerView myAdapter;
@@ -64,16 +64,12 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
         databaseReservas.child("sala").orderByChild("laboratorio");
 
         databaseReservas.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 lista = new ArrayList();
 
-
-
                 for(DataSnapshot s : dataSnapshot.getChildren()){
-
                     Reservas reserva = s.getValue(Reservas.class);
                     if(reserva.getStatus() == StatusReserva.APROVADO.getCodigo() && reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.getUsuarioLogado().getEmail())){
 
@@ -85,6 +81,7 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
                             ModeloRecyclerView modelo = new ModeloRecyclerView();
                             modelo.setHeader((reserva.getSala().isLaboratorio() ? "Laboratório " : "Sala ") +  reserva.getSala().getnSala() + "");
                             modelo.setContent(Uteis.converteDataHora(reserva.getData()));
+                            modelo.setReservas(reserva);
                             lista.add(modelo);
                         }
                     }
@@ -101,7 +98,7 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
                     mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 }
 
-                myAdapter = new AdapterRecylcerView(ReservasActivity.this, lista);
+                myAdapter = new AdapterRecylcerView(ReservasActivity.this, lista, getSupportFragmentManager());
                 mRecyclerView.setAdapter(myAdapter);
 
                 if(lista.size() > 0){
@@ -123,5 +120,10 @@ public class ReservasActivity extends AppCompatActivity implements View.OnClickL
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.from_fade_in, R.anim.from_fade_out);
+    }
+
+    @Override
+    public void onButtonClicker(String text, Reservas reservas) {
+
     }
 }

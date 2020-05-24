@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.projetointegrado.aprovarReserva.AprovarActivity;
 import com.example.projetointegrado.cadastraSala.CadastrarSalaActivity;
 import com.example.projetointegrado.historico.HistoricoActivity;
+import com.example.projetointegrado.modelos.Reservas;
+import com.example.projetointegrado.modelos.StatusReserva;
 import com.example.projetointegrado.modelos.User;
 import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.example.projetointegrado.reservas.ReservasActivity;
@@ -27,10 +29,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvUsuario;
     TextView tvCargo;
+    TextView tvAprovados;
+    TextView tvPendentes;
+    TextView tvRecusados;
+
     ImageView ivSair;
     RelativeLayout btReservas;
     RelativeLayout btSala;
@@ -38,11 +46,16 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout btAprovar;
     RelativeLayout btHistorico;
     RelativeLayout btCadastrarAdmin;
+
     LinearLayout llAdmin;
     LinearLayout llProfessor;
+    LinearLayout llAprovados;
+    LinearLayout llPendentes;
+    LinearLayout llRecusados;
 
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseUsuario;
+    DatabaseReference databaseReservas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +68,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         llAdmin = (LinearLayout) findViewById(R.id.ll_Admin);
         llProfessor = (LinearLayout) findViewById(R.id.ll_Professor);
+
+        llAprovados = (LinearLayout) findViewById(R.id.llAprovados);
+        llRecusados = (LinearLayout) findViewById(R.id.llRecusados);
+        llPendentes = (LinearLayout) findViewById(R.id.llPendentes);
+
+        tvAprovados = (TextView) findViewById(R.id.tvNAprovadas);
+        tvPendentes = (TextView) findViewById(R.id.tvNPendentes);
+        tvRecusados = (TextView) findViewById(R.id.tvNRecusadas);
 
         tvUsuario = (TextView) findViewById(R.id.tv_usuario);
 
@@ -101,6 +122,89 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
+            });
+
+            databaseReservas = FirebaseDatabase.getInstance().getReference("Reservas");
+
+            databaseReservas.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    int pendentes = 0;
+                    int aprovados = 0;
+                    int recusados = 0;
+
+                    for(DataSnapshot s : dataSnapshot.getChildren()) {
+                        Reservas reserva = s.getValue(Reservas.class);
+                        if (reserva.getStatus() == StatusReserva.APROVADO.getCodigo() && reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.getUsuarioLogado().getEmail())) {
+                            Calendar filtroData = Calendar.getInstance();
+                            filtroData.setTime(reserva.getData());
+                            filtroData.add(Calendar.DATE, +10);
+
+                            if (Calendar.getInstance().compareTo(filtroData) < 1) {
+                                aprovados++;
+                            }
+                        }
+
+                        if (reserva.getStatus() == StatusReserva.RECUSADO.getCodigo() && reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.getUsuarioLogado().getEmail())) {
+                            Calendar filtroData = Calendar.getInstance();
+                            filtroData.setTime(reserva.getData());
+                            filtroData.add(Calendar.DATE, +10);
+
+                            if (Calendar.getInstance().compareTo(filtroData) < 1) {
+                                recusados++;
+                            }
+                        }
+
+                        if (reserva.getStatus() == StatusReserva.PENDENTE.getCodigo() && reserva.getUsuario().getEmail().equalsIgnoreCase(UsuarioLogado.getUsuarioLogado().getEmail())) {
+                            Calendar filtroData = Calendar.getInstance();
+                            filtroData.setTime(reserva.getData());
+                            filtroData.add(Calendar.DATE, +10);
+
+                            if (Calendar.getInstance().compareTo(filtroData) < 1) {
+                                pendentes++;
+                            }
+                        }
+                    }
+
+
+                    if(pendentes > 0){
+                        if(pendentes == 1){
+                            tvPendentes.setText("Existe " + pendentes + " reserva pendente");
+                        }else{
+                            tvPendentes.setText("Existem " + pendentes + " reservas pendentes");
+                        }
+                        llPendentes.setVisibility(View.VISIBLE);
+                    }else{
+                        llPendentes.setVisibility(View.GONE);
+                    }
+
+                    if(aprovados > 0){
+                        if(aprovados == 1){
+                            tvAprovados.setText("Existe " + aprovados + " reserva aprovada");
+                        }else{
+                            tvAprovados.setText("Existem " + aprovados + " reservas aprovadas");
+                        }
+                        llAprovados.setVisibility(View.VISIBLE);
+                    }else{
+                        llAprovados.setVisibility(View.GONE);
+                    }
+
+                    if(recusados > 0){
+                        if(recusados == 1){
+                            tvRecusados.setText("Existe " + recusados + " reserva recusada");
+                        }else{
+                            tvRecusados.setText("Existem " + recusados + " reservas recusadas");
+                        }
+                        llRecusados.setVisibility(View.VISIBLE);
+                    }else{
+                        llRecusados.setVisibility(View.GONE);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
             });
         }
 

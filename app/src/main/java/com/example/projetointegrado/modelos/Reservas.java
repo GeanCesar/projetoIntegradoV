@@ -4,12 +4,13 @@ import java.util.Date;
 
 public class Reservas {
 
-    public Reservas(String pk,User usuario, Date data, Sala sala, int status){
+    public Reservas(String pk,User usuario, Date data, Sala sala, int status, User aprovador){
         this.pk = pk;
         this.data = data;
         this.usuario = usuario;
         this.sala = sala;
         this.status = status;
+        this.aprovador = aprovador;
     }
 
     public Reservas(){}
@@ -23,6 +24,8 @@ public class Reservas {
     private Sala sala;
 
     private int status;
+
+    private User aprovador;
 
     public User getUsuario() {
         return usuario;
@@ -63,4 +66,8 @@ public class Reservas {
     public void setPk(String pk) {
         this.pk = pk;
     }
+
+    public User getAprovador() { return aprovador; }
+
+    public void setAprovador(User aprovador) { this.aprovador = aprovador; }
 }

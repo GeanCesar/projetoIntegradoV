@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llLinhaReservas"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="15dp"
     android:background="@drawable/linha_bottom_azul"
+    android:clickable="true"
     android:orientation="vertical"
     android:paddingLeft="25dp"
     android:paddingTop="15dp"
@@ -15,6 +17,7 @@
         android:id="@+id/tvHeadItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="false"
         android:text="Header"
         android:textColor="@color/azul_projeto"
         android:textSize="23dp"
@@ -25,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        android:clickable="false"
         android:text="Content"
         android:textColor="@color/branco"
         android:textSize="16dp" />

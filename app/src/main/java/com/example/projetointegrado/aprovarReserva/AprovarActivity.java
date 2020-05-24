@@ -143,6 +143,8 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
         else
             reserva.setStatus(StatusReserva.RECUSADO.getCodigo());
 
+        reserva.setAprovador(UsuarioLogado.getUsuarioLogado());
+
         databaseReservas.child(reserva.getPk()).setValue(reserva).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

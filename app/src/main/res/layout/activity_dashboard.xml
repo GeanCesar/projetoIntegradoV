@@ -70,10 +70,144 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/llAprovados"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_top_bottom_left_verde"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="false"
+                        android:padding="40dp"
+                        android:rotation="180"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/confirm" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/borda_botao_dash"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNAprovadas"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:text="Existem N reservas aprovadas"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/branco"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPendentes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_top_bottom_left_azul"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="false"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/warning" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/borda_botao_dash"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNPendentes"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:text="Existem N reservas pendentes"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/branco"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRecusados"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rounded_top_bottom_left_vermelho"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:clickable="false"
+                        android:padding="14dp"
+                        android:rotation="180"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/error" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/borda_botao_dash"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNRecusadas"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:text="Existem N reservas recusadas"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/branco"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -375,4 +509,6 @@
         </ScrollView>
 
     </LinearLayout>
+
+
 </RelativeLayout>
