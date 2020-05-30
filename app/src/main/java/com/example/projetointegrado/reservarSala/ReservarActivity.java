@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
+import com.example.projetointegrado.modelos.ControleDataReservas;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewReservar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.Sala;
@@ -36,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,6 +57,7 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
 
     public ValoresRetornados valores = new ValoresRetornados();
     public ArrayList<ModeloRecyclerViewReservar> lista = new ArrayList<>();
+    public ArrayList<ControleDataReservas> listaReservas = new ArrayList<>();
 
     private ProgressDialog progressDialog;
 
@@ -89,6 +92,42 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
 
         databaseSala = FirebaseDatabase.getInstance().getReference("Salas");
         databaseReserva = FirebaseDatabase.getInstance().getReference("Reservas");
+
+        databaseReserva.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listaReservas = new ArrayList();
+
+                for(DataSnapshot s : dataSnapshot.getChildren()){
+                    Reservas reservas = s.getValue(Reservas.class);
+                    ControleDataReservas controle = new ControleDataReservas();
+
+                    Calendar data = Calendar.getInstance();
+                    data.setTime(reservas.getData());
+
+                    Calendar dataAntes = Calendar.getInstance();
+                    dataAntes.setTime(data.getTime());
+                    dataAntes.add(Calendar.HOUR, -1);
+                    dataAntes.add(Calendar.MINUTE, -30);
+                    dataAntes.set(Calendar.SECOND, 0);
+
+                    Calendar dataDepois = Calendar.getInstance();
+                    dataDepois.setTime(data.getTime());
+                    dataDepois.add(Calendar.HOUR, 1);
+                    dataDepois.add(Calendar.MINUTE, 30);
+                    dataDepois.set(Calendar.SECOND, 0);
+
+                    controle.setReserva(reservas);
+                    controle.setDataAntes(dataAntes);
+                    controle.setDataDepois(dataDepois);
+
+                    listaReservas.add(controle);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
 
         databaseSala.addValueEventListener(new ValueEventListener() {
 
@@ -205,37 +244,57 @@ public class ReservarActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void insereNoBanco(){
-
-        progressDialog = ProgressDialog.show(this,"Cadastrando usuário","Aguarde...",false,false);
-
-        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-
-        String chave = Uteis.gerarChave() + UsuarioLogado.getUsuarioLogado().getNome();
-
-        Reservas res = new Reservas();
-        res.setUsuario(UsuarioLogado.getUsuarioLogado());
-        res.setSala(valores.getSala());
-        res.setData(valores.getDataHora().getTime());
-        res.setStatus(StatusReserva.PENDENTE.getCodigo());
-        res.setUsuario(UsuarioLogado.usuarioLogado);
-        res.setAprovador(UsuarioLogado.usuarioLogado);
-        res.setPk(chave);
-
-        databaseReserva.child(chave).setValue(res).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(ReservarActivity.this, "Reserva solicitada com sucesso!", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                    finish();
-
-                }
-                else{
-                    Toast.makeText(ReservarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
+        boolean ok = true;
+        Calendar data = Calendar.getInstance();
+        for (int i = 0; i < listaReservas.size(); i++){
+            if(listaReservas.get(i).getReserva().getStatus() == StatusReserva.APROVADO.getCodigo()){
+                if(listaReservas.get(i).getReserva().getSala().getnSala() == valores.getSala().getnSala()){
+                    if(listaReservas.get(i).getReserva().getSala().isLaboratorio() == valores.getSala().isLaboratorio()) {
+                        if ((listaReservas.get(i).getDataAntes().compareTo(valores.getDataHora()) <= 0) && (listaReservas.get(i).getDataDepois().compareTo(valores.getDataHora()) >= 0)) {
+                            ok = false;
+                        }
+                    }
                 }
             }
-        });
+        }
+
+        if(ok){
+            progressDialog = ProgressDialog.show(this,"Cadastrando reserva","Aguarde...",false,false);
+
+            FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+            String chave = Uteis.gerarChave() + UsuarioLogado.getUsuarioLogado().getNome();
+
+            Reservas res = new Reservas();
+            res.setUsuario(UsuarioLogado.getUsuarioLogado());
+            res.setSala(valores.getSala());
+            res.setData(valores.getDataHora().getTime());
+            res.setStatus(StatusReserva.PENDENTE.getCodigo());
+            res.setUsuario(UsuarioLogado.usuarioLogado);
+            res.setAprovador(UsuarioLogado.usuarioLogado);
+            res.setPk(chave);
+
+            databaseReserva.child(chave).setValue(res).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()) {
+                        Toast.makeText(ReservarActivity.this, "Reserva solicitada com sucesso!", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        finish();
+
+                    }
+                    else{
+                        Toast.makeText(ReservarActivity.this, "Falhou!", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                }
+            });
+        }else{
+            Toast.makeText(ReservarActivity.this, "Falhou!\nA sala selecionada já está reservada no periodo solicitado", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
 
     }
 

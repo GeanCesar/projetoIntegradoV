@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetointegrado.R;
 import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
+import com.example.projetointegrado.modelos.ControleDataReservas;
 import com.example.projetointegrado.modelos.ModeloRecyclerViewAprovar;
 import com.example.projetointegrado.modelos.Reservas;
 import com.example.projetointegrado.modelos.StatusReserva;
+import com.example.projetointegrado.reservarSala.ReservarActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AprovarActivity extends AppCompatActivity implements View.OnClickListener, DialogAprovar.BottomSheetListener {
 
@@ -40,6 +43,7 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
     DatabaseReference databaseReservas;
 
     ArrayList<ModeloRecyclerViewAprovar> lista = new ArrayList<>();
+    ArrayList<ControleDataReservas> listaReservas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +75,41 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
         }
 
 
+
         databaseReservas.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 lista = new ArrayList();
+                listaReservas = new ArrayList();
 
                 for(DataSnapshot s : dataSnapshot.getChildren()){
-
                     Reservas reserva = s.getValue(Reservas.class);
+
+                    ControleDataReservas controle = new ControleDataReservas();
+
+                    Calendar data = Calendar.getInstance();
+                    data.setTime(reserva.getData());
+
+                    Calendar dataAntes = Calendar.getInstance();
+                    dataAntes.setTime(data.getTime());
+                    dataAntes.add(Calendar.HOUR, -1);
+                    dataAntes.add(Calendar.MINUTE, -30);
+                    dataAntes.set(Calendar.SECOND, 0);
+
+                    Calendar dataDepois = Calendar.getInstance();
+                    dataDepois.setTime(data.getTime());
+                    dataDepois.add(Calendar.HOUR, 1);
+                    dataDepois.add(Calendar.MINUTE, 30);
+                    dataDepois.set(Calendar.SECOND, 0);
+
+                    controle.setReserva(reserva);
+                    controle.setDataAntes(dataAntes);
+                    controle.setDataDepois(dataDepois);
+
+                    listaReservas.add(controle);
+
                     if(reserva.getStatus() == StatusReserva.PENDENTE.getCodigo()){
                         ModeloRecyclerViewAprovar modelo = new ModeloRecyclerViewAprovar();
                         modelo.setReserva(reserva);
@@ -120,29 +149,49 @@ public class AprovarActivity extends AppCompatActivity implements View.OnClickLi
 
     public void resultadoAprovacao(String resultado, Reservas reservas){
         if(resultado.equalsIgnoreCase("Aprovado")){
-            insereNoBanco(true, reservas);
-            String mensagem;
-            mensagem = "<!DOCTYPE html>" +
-                    "<html>" +
-                    "<head>" +
-                    "<title></title>" +
-                    "<style type='text/css'>"+
+
+            boolean ok = true;
+            Calendar data = Calendar.getInstance();
+            data.setTime(reservas.getData());
+            for (int i = 0; i < listaReservas.size(); i++){
+                if(listaReservas.get(i).getReserva().getStatus() == StatusReserva.APROVADO.getCodigo()){
+                    if(listaReservas.get(i).getReserva().getSala().getnSala() == reservas.getSala().getnSala()){
+                        if(listaReservas.get(i).getReserva().getSala().isLaboratorio() == reservas.getSala().isLaboratorio()) {
+                            if ((listaReservas.get(i).getDataAntes().compareTo(data) <= 0) && (listaReservas.get(i).getDataDepois().compareTo(data) >= 0)) {
+                                ok = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(ok){
+                insereNoBanco(true, reservas);
+                String mensagem;
+                mensagem = "<!DOCTYPE html>" +
+                        "<html>" +
+                        "<head>" +
+                        "<title></title>" +
+                        "<style type='text/css'>"+
                         "*{" +
-                            "font-family: 'Arial';" +
+                        "font-family: 'Arial';" +
                         "}" +
                         "h3, h4{" +
-                            "font-weight: normal" +
+                        "font-weight: normal" +
                         "}"+
-                    "</style>" +
-                    "</head>" +
-                    "<body>" +
-                    "<h3>Olá, <b>  " + reservas.getUsuario().getNome() + " </b> </h3>" +
-                    "<h4>O administrador analisou seu pedido da reserva  <b> " + (reservas.getSala().isLaboratorio() ? " </b> do laboratório: <b> Nº " : "</b> da sala: <b> Nº " ) + reservas.getSala().getnSala() + " </b> no dia <b> " + Uteis.converteDataHora(reservas.getData()) + " </b>, e aprovou sua solicitação. </h4>" +
-                    "<h3>Parabéns, agora basta utilizá-la no dia solicitado!</h3>" +
-                    "</body>" +
-                    "</html>";
+                        "</style>" +
+                        "</head>" +
+                        "<body>" +
+                        "<h3>Olá, <b>  " + reservas.getUsuario().getNome() + " </b> </h3>" +
+                        "<h4>O administrador analisou seu pedido da reserva  <b> " + (reservas.getSala().isLaboratorio() ? " </b> do laboratório: <b> Nº " : "</b> da sala: <b> Nº " ) + reservas.getSala().getnSala() + " </b> no dia <b> " + Uteis.converteDataHora(reservas.getData()) + " </b>, e aprovou sua solicitação. </h4>" +
+                        "<h3>Parabéns, agora basta utilizá-la no dia solicitado!</h3>" +
+                        "</body>" +
+                        "</html>";
 
-            Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reserva", mensagem, this);
+                Uteis.enviarEmail(reservas.getUsuario().getEmail(), "Resultado solicitação reserva", mensagem, this);
+            }else{
+                Toast.makeText(this, "Falhou!\nA sala selecionada já está reservada no periodo solicitado", Toast.LENGTH_LONG).show();
+            }
         }else if(resultado.equalsIgnoreCase("Recusado")){
             insereNoBanco(false, reservas);
             String mensagem;

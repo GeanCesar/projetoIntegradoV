@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetointegrado.R;
+import com.example.projetointegrado.UsuarioLogado;
 import com.example.projetointegrado.Uteis;
 import com.example.projetointegrado.modelos.Sala;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,8 +45,14 @@ public class CadastrarSalaActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_sala);
 
+        String nome = UsuarioLogado.usuarioLogado.getNome();
+        String cargo = UsuarioLogado.cargo;
+
         tv_usuario_salas = (TextView) findViewById(R.id.tv_usuario_salas);
+        tv_usuario_salas.setText(nome);
+
         tv_cargo_salas = (TextView) findViewById(R.id.tv_cargo_salas);
+        tv_cargo_salas.setText(cargo);
 
         etSala = (EditText) findViewById(R.id.etNSala);
 
